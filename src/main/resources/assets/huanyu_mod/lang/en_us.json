@@ -1,4 +1,6 @@
 {
   "item.huanyu_mod.debug_item": "Debug Item",
-  "item.huanyu_mod.debug_item2": "Debug Item 2"
+  "item.huanyu_mod.debug_item2": "Debug Item 2",
+  "block.huanyu_mod.debug_block": "Debug Block",
+  "block.huanyu_mod.debug_block2": "Debug Block2"
 }

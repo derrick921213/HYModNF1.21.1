@@ -1,5 +1,6 @@
 package com.huanyu_mod;
 
+import com.huanyu_mod.block.ModBlocks;
 import com.huanyu_mod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ public class HuanYuMod {
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -50,6 +52,10 @@ public class HuanYuMod {
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.DEBUG_ITEM);
             event.accept(ModItems.DEBUG_ITEM2);
+        }
+        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ModBlocks.DEBUG_BLOCK);
+            event.accept(ModBlocks.DEBUG_BLOCK2);
         }
     }
 

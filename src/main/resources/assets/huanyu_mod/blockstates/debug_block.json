@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "huanyu_mod:block/debug_block"
+    }
+  }
+}
