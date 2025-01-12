@@ -1,4 +1,4 @@
-package com.huanyu;
+package com.huanyu_mod;
 
 import java.util.List;
 import java.util.Set;
