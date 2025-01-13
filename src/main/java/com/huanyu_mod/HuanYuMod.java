@@ -2,7 +2,7 @@ package com.huanyu_mod;
 
 import com.huanyu_mod.block.ModBlocks;
 import com.huanyu_mod.item.ModItems;
-import net.minecraft.world.item.CreativeModeTabs;
+import com.huanyu_mod.item.ModTabs;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.api.distmarker.Dist;
@@ -15,7 +15,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -35,9 +34,8 @@ public class HuanYuMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(ModTabs::addCreative);
+        ModTabs.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -45,18 +43,6 @@ public class HuanYuMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-    }
-
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(ModItems.DEBUG_ITEM);
-            event.accept(ModItems.DEBUG_ITEM2);
-        }
-        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(ModBlocks.DEBUG_BLOCK);
-            event.accept(ModBlocks.DEBUG_BLOCK2);
-        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

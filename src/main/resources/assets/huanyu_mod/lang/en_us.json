@@ -1,6 +1,10 @@
 {
-  "item.huanyu_mod.debug_item": "Debug Item",
-  "item.huanyu_mod.debug_item2": "Debug Item 2",
-  "block.huanyu_mod.debug_block": "Debug Block",
-  "block.huanyu_mod.debug_block2": "Debug Block2"
+  "item.huanyu_mod.debug_item00": "Debug Item 00",
+  "item.huanyu_mod.debug_item01": "Debug Item 01",
+  "item.huanyu_mod.debug_item02": "Debug Item 02",
+  "block.huanyu_mod.debug_block00": "Debug Block 00",
+  "block.huanyu_mod.debug_block01": "Debug Block 01",
+  "block.huanyu_mod.debug_block02": "Debug Block 02",
+  "creative_tab.huanyu_mod.debug_tab00": "Debug Tab 00",
+  "creative_tab.huanyu_mod.debug_tab01": "Debug Tab 01"
 }
