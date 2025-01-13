@@ -1,6 +1,7 @@
 package com.huanyu_mod;
 
 import com.huanyu_mod.block.ModBlocks;
+import com.huanyu_mod.datagen.ModWorldGen;
 import com.huanyu_mod.item.ModItems;
 import com.huanyu_mod.item.ModTabs;
 import org.slf4j.Logger;
@@ -22,6 +23,10 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 public class HuanYuMod {
     public static final String MOD_ID = "huanyu_mod";
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static String getCurrentClassName() {
+        return Thread.currentThread().getStackTrace()[2].getClassName()
+                .substring(Thread.currentThread().getStackTrace()[2].getClassName().lastIndexOf('.') + 1);
+    }
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
