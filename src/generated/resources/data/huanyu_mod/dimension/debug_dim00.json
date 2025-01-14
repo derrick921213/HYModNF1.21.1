@@ -1,0 +1,11 @@
+{
+  "type": "huanyu_mod:debug_dim00_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "minecraft:the_void"
+    },
+    "settings": "minecraft:amplified"
+  }
+}

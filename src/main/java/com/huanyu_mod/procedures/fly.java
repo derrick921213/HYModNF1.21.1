@@ -12,9 +12,9 @@ import net.minecraft.world.entity.player.Player;
 public class fly {
     private static final String nbtName = "mayfly";
 
-    public static boolean tick(ServerPlayer player, CompoundTag nbt) {
+    public static void tick(ServerPlayer player, CompoundTag nbt) {
         if (!nbt.contains(nbtName)) nbt.putBoolean(nbtName, false);
-        if (player.isCreative() || player.isSpectator()) return false;
+        if (player.isCreative() || player.isSpectator()) return;
         if (nbt.getBoolean(nbtName)) {
             if (!player.getAbilities().mayfly) {
                 player.getAbilities().mayfly = true;
@@ -28,10 +28,10 @@ public class fly {
                 player.displayClientMessage(Component.translatable("message.huanyu_mod.disable_fly"), true);
             }
         }
-        return true;
+        return;
     }
 
-    public static boolean execute(CommandContext<CommandSourceStack> arguments) {
+    public static void execute(CommandContext<CommandSourceStack> arguments) {
         try {
             if (arguments.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("players"))) {
                 for (Player players : EntityArgument.getPlayers(arguments, "players")) {
@@ -50,7 +50,7 @@ public class fly {
         } catch (CommandSyntaxException e) {
             //proceduresLOGGER.log(java.util.logging.Level.SEVERE, "An error occurred at ", e);
         }
-        return true;
+        return;
     }
 }
 

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "huanyu_mod:debug_item01"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "huanyu_mod:debug_item00"
+  }
+}

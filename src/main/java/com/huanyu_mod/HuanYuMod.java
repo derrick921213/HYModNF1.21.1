@@ -1,7 +1,6 @@
 package com.huanyu_mod;
 
 import com.huanyu_mod.block.ModBlocks;
-import com.huanyu_mod.datagen.ModWorldGen;
 import com.huanyu_mod.item.ModItems;
 import com.huanyu_mod.item.ModTabs;
 import org.slf4j.Logger;

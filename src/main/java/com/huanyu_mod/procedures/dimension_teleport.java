@@ -14,14 +14,14 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
 
 public class dimension_teleport {
-    public static boolean execute(CommandContext<CommandSourceStack> arguments)  {
+    public static void execute(CommandContext<CommandSourceStack> arguments)  {
         try {
             Level world = arguments.getSource().getUnsidedLevel();
             ServerPlayer executePlayer = arguments.getSource().getPlayer();
             if (!(executePlayer instanceof ServerPlayer)) {
                 if (world instanceof ServerLevel _servLevel) {
                     executePlayer = FakePlayerFactory.getMinecraft(_servLevel);
-                } else return false;
+                } else return;
             }
             ServerLevel targetLevel;
             if (arguments.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("dimension"))) {
@@ -57,10 +57,10 @@ public class dimension_teleport {
             } else {
                 executePlayer.teleportTo(targetLevel, x, y, z, yRot, xRot);
             }
-            return true;
+            return;
         } catch (CommandSyntaxException e) {
             //proceduresLOGGER.log(java.util.logging.Level.SEVERE, "An error occurred at ", e);
-            return false;
+            return;
         }
     }
 }
