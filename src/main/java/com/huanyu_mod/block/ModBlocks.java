@@ -17,6 +17,9 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks DR_BLOCKS = DeferredRegister.createBlocks(HuanYuMod.MOD_ID);
 
+    public static final DeferredBlock<Block> DIMENSION_EDITOR = registerBlock(
+            "dimension_editor", dimension_editor::new, dimension_editor.itemProperties());
+
     public static final DeferredBlock<Block> DEBUG_BLOCK00 = registerBlock(
             "debug_block00", debug_block00::new, debug_block00.itemProperties());
     public static final DeferredBlock<Block> DEBUG_BLOCK01 = registerBlock(

@@ -1,46 +1,56 @@
 package com.huanyu_mod.procedures;
 
-import com.huanyu_mod.block.ModBlocks;
+import com.huanyu_mod.HuanYuMod;
 import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.client.Minecraft;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.LevelResource;
 
-import java.util.Map;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test {
-    private static final Map<Block, Block> CLICK_BLOCK_MAP = Map.of(
-            Blocks.GRASS_BLOCK, Blocks.DIRT,
-            Blocks.DIRT, Blocks.GRASS_BLOCK,
-            ModBlocks.DEBUG_BLOCK00.get(), ModBlocks.DEBUG_BLOCK01.get()
-    );
+    private static final Logger LOGGER = Logger.getLogger(test.class.getName());
     public static void tick(ServerPlayer player, CompoundTag nbt) {
 
-
     }
-    public static InteractionResult execute00(UseOnContext context) {
-        Level level = context.getLevel();
-        Block clickedBlock = level.getBlockState(context.getClickedPos()).getBlock();
-        if(CLICK_BLOCK_MAP.containsKey(clickedBlock)) {
-            if(!(level.isClientSide())) {
-                level.setBlockAndUpdate(context.getClickedPos(), CLICK_BLOCK_MAP.get(clickedBlock).defaultBlockState());
-                context.getItemInHand().hurtAndBreak(
-                        1, ((ServerLevel) level), context.getPlayer(),
-                        item -> context.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND)
-                );
-                level.playSound(null, context.getClickedPos(), SoundEvents.BELL_BLOCK, SoundSource.BLOCKS);
-            }
+    public static void executeU(UseOnContext context) {
+        System.out.println(test.class.getName() + " Output: " + context);
+    }
+    public static void executeA(CommandContext<CommandSourceStack> context) {
+        System.out.println(test.class.getName() + " Output: " +
+                context.getSource().getServer().getServerDirectory().toAbsolutePath());
+
+        ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "tags/block/mineable/pickaxe.json");
+        Path dataPackPath = context.getSource().getServer().getWorldPath(LevelResource.DATAPACK_DIR);
+        try {
+            Resource resource = context.getSource().getServer().getResourceManager().getResource(resourceLocation).get();
+            Path targetFolder = dataPackPath.resolve(HuanYuMod.MOD_ID).resolve("data").resolve(HuanYuMod.MOD_ID);
+            Files.createDirectories(targetFolder);
+            Path targetFile = targetFolder.resolve("new" + ".json");
+            InputStream inputStream = resource.open();
+            OutputStream outputStream = Files.newOutputStream(targetFile, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+            inputStream.transferTo(outputStream);
+
+            //Files.copy(resource.open(), targetFolder, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println(test.class.getName() + " Output: " + targetFolder);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "An error occurred at ", e);
         }
-        return InteractionResult.SUCCESS;
     }
 }

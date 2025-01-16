@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "huanyu_mod:block/debug_block00",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "huanyu_mod:block/debug_block00",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "huanyu_mod:block/debug_block00",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "huanyu_mod:block/debug_block00",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "huanyu_mod:block/debug_block00"
+    },
+    "facing=west": {
+      "model": "huanyu_mod:block/debug_block00",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

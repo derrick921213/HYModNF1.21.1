@@ -2,7 +2,8 @@ package com.huanyu_mod;
 
 import com.huanyu_mod.block.ModBlocks;
 import com.huanyu_mod.item.ModItems;
-import com.huanyu_mod.item.ModTabs;
+import com.huanyu_mod.creativeTab.ModTabs;
+import com.huanyu_mod.world.inventory.ModMenus;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.api.distmarker.Dist;
@@ -17,11 +18,15 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(HuanYuMod.MOD_ID)
 public class HuanYuMod {
     public static final String MOD_ID = "huanyu_mod";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static String getCurrentClassName() {
         return Thread.currentThread().getStackTrace()[2].getClassName()
                 .substring(Thread.currentThread().getStackTrace()[2].getClassName().lastIndexOf('.') + 1);
@@ -30,6 +35,7 @@ public class HuanYuMod {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public HuanYuMod(IEventBus modEventBus, ModContainer modContainer) {
+
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (HuanYuMod) to respond directly to events.
@@ -40,10 +46,12 @@ public class HuanYuMod {
         ModBlocks.register(modEventBus);
         modEventBus.addListener(ModTabs::addCreative);
         ModTabs.register(modEventBus);
+        ModMenus.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
+
 
     private void commonSetup(final FMLCommonSetupEvent event) {
 

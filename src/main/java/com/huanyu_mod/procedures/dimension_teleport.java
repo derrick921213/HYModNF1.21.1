@@ -14,26 +14,26 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
 
 public class dimension_teleport {
-    public static void execute(CommandContext<CommandSourceStack> arguments)  {
+    public static void execute(CommandContext<CommandSourceStack> context)  {
         try {
-            Level world = arguments.getSource().getUnsidedLevel();
-            ServerPlayer executePlayer = arguments.getSource().getPlayer();
+            Level world = context.getSource().getUnsidedLevel();
+            ServerPlayer executePlayer = context.getSource().getPlayer();
             if (!(executePlayer instanceof ServerPlayer)) {
                 if (world instanceof ServerLevel _servLevel) {
                     executePlayer = FakePlayerFactory.getMinecraft(_servLevel);
                 } else return;
             }
             ServerLevel targetLevel;
-            if (arguments.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("dimension"))) {
-                targetLevel = DimensionArgument.getDimension(arguments, "dimension");
+            if (context.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("dimension"))) {
+                targetLevel = DimensionArgument.getDimension(context, "dimension");
             } else {
                 targetLevel = executePlayer.serverLevel();
             }
             double x, y, z;
-            if (arguments.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("position"))) {
-                x = BlockPosArgument.getBlockPos(arguments, "position").getX() + 0.5;
-                y = BlockPosArgument.getBlockPos(arguments, "position").getY();
-                z = BlockPosArgument.getBlockPos(arguments, "position").getZ() + 0.5;
+            if (context.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("position"))) {
+                x = BlockPosArgument.getBlockPos(context, "position").getX() + 0.5;
+                y = BlockPosArgument.getBlockPos(context, "position").getY();
+                z = BlockPosArgument.getBlockPos(context, "position").getZ() + 0.5;
             } else {
                 x = executePlayer.getX();
                 y = executePlayer.getY();
@@ -42,18 +42,18 @@ public class dimension_teleport {
             float yRot = executePlayer.getYRot();
             float xRot = executePlayer.getXRot();
             int count = 0;
-            if (arguments.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("players"))) {
-                for (Player players : EntityArgument.getPlayers(arguments, "players")) {
+            if (context.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("players"))) {
+                for (Player players : EntityArgument.getPlayers(context, "players")) {
                     if(players.level().isClientSide()) continue;
                     if (players instanceof ServerPlayer _player) {
                         _player.teleportTo(targetLevel, x, y, z, yRot, xRot);
                         count++;
                     } else {
-                        arguments.getSource().sendFailure(Component.translatable("message.huanyu_mod.teleport_fail", players.getName()));
+                        context.getSource().sendFailure(Component.translatable("message.huanyu_mod.teleport_fail", players.getName()));
                     }
                 }
                 int finalCount = count;
-                arguments.getSource().sendSuccess(() -> Component.translatable("message.huanyu_mod.teleport_success", finalCount), false);
+                context.getSource().sendSuccess(() -> Component.translatable("message.huanyu_mod.teleport_success", finalCount), false);
             } else {
                 executePlayer.teleportTo(targetLevel, x, y, z, yRot, xRot);
             }

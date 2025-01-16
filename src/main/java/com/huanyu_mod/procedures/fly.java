@@ -1,13 +1,17 @@
 package com.huanyu_mod.procedures;
 
+import com.huanyu_mod.HuanYuMod;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.logging.LogUtils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
 
 public class fly {
     private static final String nbtName = "mayfly";
@@ -31,10 +35,10 @@ public class fly {
         return;
     }
 
-    public static void execute(CommandContext<CommandSourceStack> arguments) {
+    public static void execute(CommandContext<CommandSourceStack> context) {
         try {
-            if (arguments.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("players"))) {
-                for (Player players : EntityArgument.getPlayers(arguments, "players")) {
+            if (context.getNodes().stream().anyMatch(node -> node.getNode().getName().equals("players"))) {
+                for (Player players : EntityArgument.getPlayers(context, "players")) {
                     if (players.level().isClientSide()) continue;
                     if (players instanceof ServerPlayer player) {
                         CompoundTag nbt = player.getPersistentData().getCompound("hyd");
@@ -42,16 +46,14 @@ public class fly {
                     }
                 }
             } else {
-                if (arguments.getSource().getEntity() instanceof ServerPlayer player) {
+                if (context.getSource().getEntity() instanceof ServerPlayer player) {
                     CompoundTag nbt = player.getPersistentData().getCompound("hyd");
                     nbt.putBoolean(nbtName, !nbt.getBoolean(nbtName));
                 }
             }
         } catch (CommandSyntaxException e) {
-            //proceduresLOGGER.log(java.util.logging.Level.SEVERE, "An error occurred at ", e);
+            HuanYuMod.LOGGER.error("An error occurred at ", e);
         }
         return;
     }
 }
-
-
