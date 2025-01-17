@@ -1,6 +1,7 @@
-package com.huanyu_mod.world.dimension;
+package com.huanyu_mod.dataGenInGame;
 
 import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.world.dimension.debug_dim00;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
@@ -57,16 +58,16 @@ public class debug_dim02 {
     public static void setLevelStem(BootstrapContext<LevelStem> context) {
         HolderGetter<DimensionType> dimType = context.lookup(Registries.DIMENSION_TYPE);
         HolderGetter<Biome> biomeSet = context.lookup(Registries.BIOME);
-        HolderGetter<StructureSet> structureSet = context.lookup(Registries.STRUCTURE_SET);
+        //HolderGetter<StructureSet> structureSet = context.lookup(Registries.STRUCTURE_SET);
 
         List<FlatLayerInfo> layers = List.of(
                 new FlatLayerInfo(1, Blocks.BEDROCK)
         );
-        Optional<HolderSet<StructureSet>> structures = Optional.empty();
-        Holder<Biome> biomeHolder = biomeSet.getOrThrow(Biomes.THE_VOID);
-        FlatLevelGeneratorSettings flatSettings = new FlatLevelGeneratorSettings(Optional.empty(), biomeHolder, List.of());
-        flatSettings = flatSettings.withBiomeAndLayers(layers, structures, biomeHolder);
 
+        Holder<Biome> biomeHolder = biomeSet.getOrThrow(Biomes.THE_VOID);
+        Optional<HolderSet<StructureSet>> structures = Optional.empty();
+        FlatLevelGeneratorSettings flatSettings = new FlatLevelGeneratorSettings(structures, biomeHolder, List.of());
+        flatSettings = flatSettings.withBiomeAndLayers(layers, structures, biomeHolder);
         FlatLevelSource flatChunkGenerator = new FlatLevelSource(flatSettings);
         LevelStem levelStem = new LevelStem(dimType.getOrThrow(debug_dim00.DIMENSION_TYPE), flatChunkGenerator);
         context.register(LEVEL_STEM, levelStem);

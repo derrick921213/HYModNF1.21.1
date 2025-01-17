@@ -1,47 +1,41 @@
 package com.huanyu_mod.dataGenInGame;
 
 import com.huanyu_mod.HuanYuMod;
-import net.minecraft.SharedConstants;
-import net.minecraft.WorldVersion;
+import com.huanyu_mod.dataGenerator.lootTableProBlock;
+import com.huanyu_mod.dataGenerator.recipePro;
+import com.huanyu_mod.dataGenerator.tagProBlock;
+import com.huanyu_mod.dataGenerator.tagProItem;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.level.storage.LevelResource;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
+/*@EventBusSubscriber(modid = HuanYuMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class DataGenInGaming {
-    public static void generateData(MinecraftServer server) {
-        try {
-            Path dataPackPath = server.getWorldPath(LevelResource.DATAPACK_DIR);
-            Files.createDirectories(dataPackPath
-                    .resolve(HuanYuMod.MOD_ID)
-                    .resolve("data")
-                    .resolve(HuanYuMod.MOD_ID));
-            WorldVersion worldVersion = new CustomWorldVersion(
-                    server.getServerVersion(),
-                    server.getServerVersion(),
-                    SharedConstants.getProtocolVersion()
-            );
-            //DataGenerator generator = new DataGenerator(outputPath, worldVersion, false);
-            //PackOutput packOutput = generator.getPackOutput();
-            /*ExistingFileHelper existingFileHelper = new ExistingFileHelper(
-                    Collections.emptyList(), new HashSet<>().add(), false, null, null);
-            CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+    @SubscribeEvent
+    public static void gatherData(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput packOutput = generator.getPackOutput();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-            tagProBlock _tagProBlock = generator.addProvider(true, new tagProBlock(packOutput, generator.getLookupProvider(), existingFileHelper));
-            generator.addProvider(true, new tagProItem(packOutput, generator.getLookupProvider(), _tagProBlock.contentsGetter(), existingFileHelper));
-            generator.addProvider(true, new LootTableProvider(
-                    packOutput, Collections.emptySet(),
-                    List.of(new LootTableProvider.SubProviderEntry(lootTableProBlock::new, LootContextParamSets.BLOCK)),
-                    generator.getLookupProvider()));
-            generator.addProvider(true, new recipePro(packOutput, generator.getLookupProvider()));
-            generator.addProvider(true, new worldPro(packOutput, generator.getLookupProvider()));
-
-            generator.run();*/
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        /*tagProBlock _tagProBlock =
+                generator.addProvider(event.includeServer(), new tagProBlock(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new tagProItem(packOutput, lookupProvider, _tagProBlock.contentsGetter(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new LootTableProvider(
+                packOutput, Collections.emptySet(),
+                List.of(new LootTableProvider.SubProviderEntry(lootTableProBlock::new, LootContextParamSets.BLOCK)),
+                lookupProvider));
+        generator.addProvider(event.includeServer(), new recipePro(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new worldPro(packOutput, lookupProvider));
     }
-}
+}*/

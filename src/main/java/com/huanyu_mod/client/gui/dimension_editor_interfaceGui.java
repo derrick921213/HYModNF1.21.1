@@ -1,6 +1,7 @@
 package com.huanyu_mod.client.gui;
 
 import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.procedures.test;
 import com.huanyu_mod.world.inventory.dimension_editor_interfaceInv;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,15 +12,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
 public class dimension_editor_interfaceGui extends AbstractContainerScreen<dimension_editor_interfaceInv> {
 	private final static HashMap<String, Object> guiState = dimension_editor_interfaceInv.guiState;
-	private final Level world;
-	private final int x, y, z;
-	private final Player entity;
+	private final Level level;
+	private final Vec3 blockPos;
+	private final Player player;
 
 	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
 			HuanYuMod.MOD_ID, "textures/screens/dimension_editor_bg.png");
@@ -30,12 +32,10 @@ public class dimension_editor_interfaceGui extends AbstractContainerScreen<dimen
 
 	public dimension_editor_interfaceGui(dimension_editor_interfaceInv container, Inventory inventory, Component component) {
 		super(container, inventory, component);
-		this.world = container.level;
-		this.x = container.blockX;
-		this.y = container.blockY;
-		this.z = container.blockZ;
-		this.entity = container.player;
-		this.imageWidth = 384;
+		this.level = container.level;
+		this.blockPos = new Vec3(container.blockX, container.blockY, container.blockZ);
+		this.player = container.player;
+        this.imageWidth = 384;
 		this.imageHeight = 216;
 	}
 
@@ -76,7 +76,7 @@ public class dimension_editor_interfaceGui extends AbstractContainerScreen<dimen
 		int[] time_buttonPosSize = {this.leftPos + 10, this.topPos + 20, 20, 20};
 		button_time_00 = Button.builder(
 				Component.translatable("gui.huanyu_mod.dimension_editor.button_time_00"), e -> {
-
+							test.executeU(player.level(), blockPos, player);
 				}).bounds(time_buttonPosSize[0], time_buttonPosSize[1], time_buttonPosSize[2], time_buttonPosSize[3])
 				.build();
 		guiState.put("button:button_time_00", button_time_00);
