@@ -1,8 +1,8 @@
 package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
-import com.huanyu_mod.block.ModBlocks;
-import com.huanyu_mod.item.ModItems;
+import com.huanyu_mod.block._ModBlocks;
+import com.huanyu_mod.item._ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -27,7 +27,7 @@ public class recipeProvider extends RecipeProvider implements IConditionBuilder 
         TagKey<Item> tag_debug_block = TagKey.create(Registries.ITEM,
                 ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_block"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DEBUG_BLOCK00.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, _ModBlocks.DEBUG_BLOCK00.get())
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
@@ -35,14 +35,14 @@ public class recipeProvider extends RecipeProvider implements IConditionBuilder 
                 .unlockedBy("has_debug_item", has(tag_debug_item))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_block00_0"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.DEBUG_ITEM00.get(), 9)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, _ModItems.DEBUG_ITEM00.get(), 9)
                 .requires(tag_debug_block)
                 .unlockedBy("has_debug_item", has(tag_debug_block))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_item00_0"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.DEBUG_ITEM00.get(), 1)
-                .requires(ModItems.DEBUG_ITEM01.get())
-                .unlockedBy("has_debug_item", has(ModItems.DEBUG_ITEM00))
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, _ModItems.DEBUG_ITEM00.get(), 1)
+                .requires(_ModItems.DEBUG_ITEM01.get())
+                .unlockedBy("has_debug_item", has(_ModItems.DEBUG_ITEM00))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_item00_1"));
         /*
         List<ItemLike> BISMUTH_SMELTABLES = List.of(ModItems.RAW_BISMUTH,

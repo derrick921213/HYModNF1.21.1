@@ -13,7 +13,7 @@ import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = HuanYuMod.MOD_ID)
-public class ModProcedures {
+public class _ModProcedures {
     @SubscribeEvent
     public static void onLevelTick(LevelTickEvent.Post event) {}
     @SubscribeEvent

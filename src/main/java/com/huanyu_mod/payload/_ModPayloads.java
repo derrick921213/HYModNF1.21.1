@@ -9,7 +9,7 @@ import net.neoforged.neoforge.network.registration.HandlerThread;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 @EventBusSubscriber(modid = HuanYuMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class ModPayloads {
+public class _ModPayloads {
     @SubscribeEvent
     public static void registerPayloadHandlers(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar(HuanYuMod.MOD_ID).executesOn(HandlerThread.NETWORK);

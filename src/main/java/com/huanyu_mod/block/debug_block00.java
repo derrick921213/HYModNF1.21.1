@@ -3,6 +3,7 @@ package com.huanyu_mod.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -16,21 +17,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class debugBlock02 extends Block {
+public class debug_block00 extends Block {
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
-    public debugBlock02() {
-        super(BlockBehaviour.Properties.of()
+    public debug_block00() {
+        super(BlockBehaviour.Properties
+                .of()
                 .sound(SoundType.AMETHYST)
                 .strength(1f, 1200f)
                 .lightLevel(s -> 15)
                 .noOcclusion()
         );
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
     }
     public static Item.Properties itemProperties() {
-        return new Item.Properties();
+        return new Item.Properties()
+                .rarity(Rarity.EPIC);
     }
-
     @Override
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return switch (state.getValue(FACING)) {
@@ -57,8 +59,4 @@ public class debugBlock02 extends Block {
     public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
-    /*@Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        return dimensionEditorProcedures.execute(level, pos.getX(), pos.getY(), pos.getZ(), player);
-    }*/
 }

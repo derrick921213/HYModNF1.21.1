@@ -1,7 +1,7 @@
 package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
-import com.huanyu_mod.block.ModBlocks;
+import com.huanyu_mod.block._ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -23,9 +23,9 @@ public class tagProviderBlock extends BlockTagsProvider {
                 .add(ModBlocks.SAPPHIRE_ORE.get()).addTag(Tags.Blocks.ORES);*/
 
         this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_block"))).add(
-                ModBlocks.DEBUG_BLOCK00.get(),
-                ModBlocks.DEBUG_BLOCK01.get(),
-                ModBlocks.DEBUG_BLOCK02.get()
+                _ModBlocks.DEBUG_BLOCK00.get(),
+                _ModBlocks.DEBUG_BLOCK01.get(),
+                _ModBlocks.DEBUG_BLOCK02.get()
         );
 
     }

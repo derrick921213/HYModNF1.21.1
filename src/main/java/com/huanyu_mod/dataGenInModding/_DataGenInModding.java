@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = HuanYuMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class DataGenInModding {
+public class _DataGenInModding {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
@@ -24,12 +24,14 @@ public class DataGenInModding {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        tagProviderBlock _tagProBlock =
-                generator.addProvider(event.includeServer(), new tagProviderBlock(packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new tagProviderItem(packOutput, lookupProvider, _tagProBlock.contentsGetter(), existingFileHelper));
+        tagProviderBlock tagProviderBlock = generator.addProvider(event.includeServer(), new tagProviderBlock(
+                packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new tagProviderItem(
+                packOutput, lookupProvider, tagProviderBlock.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTableProvider(
                 packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(lootTableProviderBlock::new, LootContextParamSets.BLOCK)),
+                List.of(new LootTableProvider.SubProviderEntry(
+                        lootTableProviderBlock::new, LootContextParamSets.BLOCK)),
                 lookupProvider));
         generator.addProvider(event.includeServer(), new recipeProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new worldProvider(packOutput, lookupProvider));

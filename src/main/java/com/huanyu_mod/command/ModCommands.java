@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 public class ModCommands {
     @SubscribeEvent
     public static void registerCommand(RegisterCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("hyc")
+        event.getDispatcher().register(Commands.literal("/hyc")
                 .then(testCmd.register())
                 .then(dimTpCmd.register())
                 .then(flyCmd.register())

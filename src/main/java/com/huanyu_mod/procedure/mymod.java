@@ -25,7 +25,7 @@ public class mymod {
 
     public static void onServerStarting(RegisterEvent event) {
         DimensionType customDimensionType = new DimensionType(
-                OptionalLong.of(6000),
+                OptionalLong.of(6200),
                 false,
                 false,
                 false,

@@ -37,7 +37,7 @@ public class debug_dim02 {
 
     public static void setDimensionType(BootstrapContext<DimensionType> context) {
         context.register(DIMENSION_TYPE, new DimensionType(
-                OptionalLong.of(6002),
+                OptionalLong.of(6102),
                 false,
                 false,
                 false,

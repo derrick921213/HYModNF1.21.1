@@ -1,12 +1,11 @@
 package com.huanyu_mod;
 
-import com.huanyu_mod.block.ModBlocks;
-import com.huanyu_mod.item.ModItems;
-import com.huanyu_mod.creativeTab.ModTabs;
+import com.huanyu_mod.block._ModBlocks;
+import com.huanyu_mod.item._ModItems;
+import com.huanyu_mod.creativeTab._ModTabs;
 import com.huanyu_mod.procedure.mymod;
-import com.huanyu_mod.world.inventory.ModMenus;
+import com.huanyu_mod.world.inventory._ModMenus;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -18,7 +17,6 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(HuanYuMod.MOD_ID)
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -34,7 +32,6 @@ public class HuanYuMod {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public HuanYuMod(IEventBus modEventBus, ModContainer modContainer) {
-
         modEventBus.addListener(this::commonSetup);
         /*
         Register ourselves for server and other game events we are interested in.
@@ -42,11 +39,11 @@ public class HuanYuMod {
         Do not add this line { NeoForge.EVENT_BUS.register(this); }
             if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         */
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
-        modEventBus.addListener(ModTabs::addCreative);
-        ModTabs.register(modEventBus);
-        ModMenus.register(modEventBus);
+        _ModItems.register(modEventBus);
+        _ModBlocks.register(modEventBus);
+        modEventBus.addListener(_ModTabs::addCreative);
+        _ModTabs.register(modEventBus);
+        _ModMenus.register(modEventBus);
 
         modEventBus.addListener(mymod::onServerStarting);
 
@@ -65,13 +62,5 @@ public class HuanYuMod {
                 customDimensionType,
                 Lifecycle.stable()
         );*/
-    }
-    /* -------------------- MOD Client Event -------------------- */
-    @EventBusSubscriber(modid = HuanYuMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class modClient {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-
-        }
     }
 }

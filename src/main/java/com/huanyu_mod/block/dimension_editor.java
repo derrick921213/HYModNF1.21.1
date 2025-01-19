@@ -1,38 +1,42 @@
 package com.huanyu_mod.block;
 
+import com.huanyu_mod.procedure.dimensionEditorProcedures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class debugBlock00 extends Block {
+public class dimension_editor extends Block {
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
-    public debugBlock00() {
-        super(BlockBehaviour.Properties
-                .of()
+    public dimension_editor() {
+        super(Properties.of()
                 .sound(SoundType.AMETHYST)
                 .strength(1f, 1200f)
                 .lightLevel(s -> 15)
                 .noOcclusion()
         );
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
     public static Item.Properties itemProperties() {
         return new Item.Properties()
                 .rarity(Rarity.EPIC);
     }
+
     @Override
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return switch (state.getValue(FACING)) {
@@ -58,5 +62,9 @@ public class debugBlock00 extends Block {
     }
     public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+    }
+    @Override
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+        return dimensionEditorProcedures.openGui(level, pos.getX(), pos.getY(), pos.getZ(), player);
     }
 }

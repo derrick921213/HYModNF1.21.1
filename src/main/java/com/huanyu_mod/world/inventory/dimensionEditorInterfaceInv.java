@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class dimension_editor_interfaceInv extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
+public class dimensionEditorInterfaceInv extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
 	public final static HashMap<String, Object> guiState = new HashMap<>();
 	public final Level level;
 	public final Player player;
@@ -32,8 +32,8 @@ public class dimension_editor_interfaceInv extends AbstractContainerMenu impleme
 	private Entity boundEntity = null;
 	private BlockEntity boundBlockEntity = null;
 
-	public dimension_editor_interfaceInv(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(ModMenus.DIMENSION_EDITOR_INTERFACE.get(), id);
+	public dimensionEditorInterfaceInv(int id, Inventory inv, FriendlyByteBuf extraData) {
+		super(_ModMenus.DIMENSION_EDITOR_INTERFACE.get(), id);
 		this.player = inv.player;
 		this.level = inv.player.level();
 		this.internal = new ItemStackHandler(0);

@@ -1,30 +1,25 @@
 package com.huanyu_mod.block;
 
-import com.huanyu_mod.procedure.dimensionEditorProcedures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class dimensionEditor extends Block {
+public class debug_block02 extends Block {
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
-    public dimensionEditor() {
-        super(Properties.of()
+    public debug_block02() {
+        super(BlockBehaviour.Properties.of()
                 .sound(SoundType.AMETHYST)
                 .strength(1f, 1200f)
                 .lightLevel(s -> 15)
@@ -33,8 +28,7 @@ public class dimensionEditor extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
     public static Item.Properties itemProperties() {
-        return new Item.Properties()
-                .rarity(Rarity.EPIC);
+        return new Item.Properties();
     }
 
     @Override
@@ -63,8 +57,8 @@ public class dimensionEditor extends Block {
     public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
-    @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        return dimensionEditorProcedures.openGui(level, pos.getX(), pos.getY(), pos.getZ(), player);
-    }
+    /*@Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        return dimensionEditorProcedures.execute(level, pos.getX(), pos.getY(), pos.getZ(), player);
+    }*/
 }

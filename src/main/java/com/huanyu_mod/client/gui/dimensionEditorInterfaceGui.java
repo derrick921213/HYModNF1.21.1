@@ -2,7 +2,7 @@ package com.huanyu_mod.client.gui;
 
 import com.huanyu_mod.HuanYuMod;
 import com.huanyu_mod.payload.dimensionEditorPayload;
-import com.huanyu_mod.world.inventory.dimension_editor_interfaceInv;
+import com.huanyu_mod.world.inventory.dimensionEditorInterfaceInv;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -18,8 +18,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
-public class dimensionEditorInterfaceGui extends AbstractContainerScreen<dimension_editor_interfaceInv> {
-	private final static HashMap<String, Object> guiState = dimension_editor_interfaceInv.guiState;
+public class dimensionEditorInterfaceGui extends AbstractContainerScreen<dimensionEditorInterfaceInv> {
+	private final static HashMap<String, Object> guiState = dimensionEditorInterfaceInv.guiState;
 	private final Level level;
 	private final Vec3 blockPos;
 	private final Player player;
@@ -31,7 +31,7 @@ public class dimensionEditorInterfaceGui extends AbstractContainerScreen<dimensi
 	Button button_time_12;
 	Button button_time_18;
 
-	public dimensionEditorInterfaceGui(dimension_editor_interfaceInv container, Inventory inventory, Component component) {
+	public dimensionEditorInterfaceGui(dimensionEditorInterfaceInv container, Inventory inventory, Component component) {
 		super(container, inventory, component);
 		this.level = container.level;
 		this.blockPos = new Vec3(container.blockX, container.blockY, container.blockZ);

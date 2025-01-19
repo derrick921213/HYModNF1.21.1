@@ -1,7 +1,7 @@
 package com.huanyu_mod.procedure;
 
 import com.huanyu_mod.HuanYuMod;
-import com.huanyu_mod.world.inventory.dimension_editor_interfaceInv;
+import com.huanyu_mod.world.inventory.dimensionEditorInterfaceInv;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -32,7 +32,7 @@ public class dimensionEditorProcedures {
 					}
 					@Override
 					public AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory, @NotNull Player _player) {
-						return new dimension_editor_interfaceInv(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
+						return new dimensionEditorInterfaceInv(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
 					}
 				}, blockPos);
                 return InteractionResult.SUCCESS;

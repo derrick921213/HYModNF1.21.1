@@ -9,11 +9,11 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModMenus {
+public class _ModMenus {
 	public static final DeferredRegister<MenuType<?>> DR_Menu = DeferredRegister.create(Registries.MENU, HuanYuMod.MOD_ID);
 
-	public static final DeferredHolder<MenuType<?>, MenuType<dimension_editor_interfaceInv>> DIMENSION_EDITOR_INTERFACE =
-			DR_Menu.register("dimension_editor_interface", () -> IMenuTypeExtension.create(dimension_editor_interfaceInv::new));
+	public static final DeferredHolder<MenuType<?>, MenuType<dimensionEditorInterfaceInv>> DIMENSION_EDITOR_INTERFACE =
+			DR_Menu.register("dimension_editor_interface", () -> IMenuTypeExtension.create(dimensionEditorInterfaceInv::new));
 
 	public static void register(IEventBus eventBus) {
 		DR_Menu.register(eventBus);

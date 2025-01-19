@@ -1,6 +1,6 @@
 package com.huanyu_mod.procedure;
 
-import com.huanyu_mod.block.ModBlocks;
+import com.huanyu_mod.block._ModBlocks;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -17,7 +17,7 @@ public class chisel {
     private static final Map<Block, Block> CLICK_BLOCK_MAP = Map.of(
             Blocks.GRASS_BLOCK, Blocks.DIRT,
             Blocks.DIRT, Blocks.GRASS_BLOCK,
-            ModBlocks.DEBUG_BLOCK00.get(), ModBlocks.DEBUG_BLOCK01.get()
+            _ModBlocks.DEBUG_BLOCK00.get(), _ModBlocks.DEBUG_BLOCK01.get()
     );
 
     public static InteractionResult execute(UseOnContext context) {

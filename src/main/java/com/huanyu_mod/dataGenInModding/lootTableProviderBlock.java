@@ -1,6 +1,6 @@
 package com.huanyu_mod.dataGenInModding;
 
-import com.huanyu_mod.block.ModBlocks;
+import com.huanyu_mod.block._ModBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -17,10 +17,10 @@ public class lootTableProviderBlock extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.DIMENSION_EDITOR.get());
-        dropSelf(ModBlocks.DEBUG_BLOCK00.get());
-        dropSelf(ModBlocks.DEBUG_BLOCK01.get());
-        dropSelf(ModBlocks.DEBUG_BLOCK02.get());
+        dropSelf(_ModBlocks.DIMENSION_EDITOR.get());
+        dropSelf(_ModBlocks.DEBUG_BLOCK00.get());
+        dropSelf(_ModBlocks.DEBUG_BLOCK01.get());
+        dropSelf(_ModBlocks.DEBUG_BLOCK02.get());
 
         /*this.add(ModBlocks.SAPPHIRE_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.SAPPHIRE_ORE.get(), ModItems.RAW_SAPPHIRE.get()));
@@ -55,6 +55,6 @@ public class lootTableProviderBlock extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return ModBlocks.DR_BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+        return _ModBlocks.DR_BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 }

@@ -1,8 +1,8 @@
 package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
-import com.huanyu_mod.block.ModBlocks;
-import com.huanyu_mod.item.ModItems;
+import com.huanyu_mod.block._ModBlocks;
+import com.huanyu_mod.item._ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -18,15 +18,15 @@ public class tagProviderItem extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
         this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_item"))).add(
-                ModItems.DEBUG_ITEM00.get(),
-                ModItems.DEBUG_ITEM01.get(),
-                ModItems.DEBUG_ITEM02.get()
+                _ModItems.DEBUG_ITEM00.get(),
+                _ModItems.DEBUG_ITEM01.get(),
+                _ModItems.DEBUG_ITEM02.get()
         );
 
         this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_block")))
-                .add(ModBlocks.DEBUG_BLOCK00.get().asItem())
-                .add(ModBlocks.DEBUG_BLOCK01.get().asItem())
-                .add(ModBlocks.DEBUG_BLOCK02.get().asItem());
+                .add(_ModBlocks.DEBUG_BLOCK00.get().asItem())
+                .add(_ModBlocks.DEBUG_BLOCK01.get().asItem())
+                .add(_ModBlocks.DEBUG_BLOCK02.get().asItem());
 
     }
 
