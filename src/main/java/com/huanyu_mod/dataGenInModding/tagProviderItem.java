@@ -1,4 +1,4 @@
-package com.huanyu_mod.dataGenerator;
+package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
 import com.huanyu_mod.block.ModBlocks;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class tagProItem extends ItemTagsProvider {
+public class tagProviderItem extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
         this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_item"))).add(
@@ -30,7 +30,7 @@ public class tagProItem extends ItemTagsProvider {
 
     }
 
-    public tagProItem(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, CompletableFuture<TagLookup<Block>> tags, ExistingFileHelper existingFileHelper) {
+    public tagProviderItem(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, CompletableFuture<TagLookup<Block>> tags, ExistingFileHelper existingFileHelper) {
         super(output, registries, tags, HuanYuMod.MOD_ID, existingFileHelper);
     }
 }

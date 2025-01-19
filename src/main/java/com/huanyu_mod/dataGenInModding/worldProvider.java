@@ -1,4 +1,4 @@
-package com.huanyu_mod.dataGenerator;
+package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
 import com.huanyu_mod.world.dimension.debug_dim00;
@@ -12,7 +12,7 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class worldPro extends DatapackBuiltinEntriesProvider {
+public class worldProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.DIMENSION_TYPE, context -> {
                 debug_dim00.setDimensionType(context);
@@ -25,7 +25,7 @@ public class worldPro extends DatapackBuiltinEntriesProvider {
             /*.add(Registries.DIMENSION_TYPE, debug_dim00::setDimensionType)
             .add(Registries.LEVEL_STEM, debug_dim00::setLevelStem)*/
 
-    public worldPro(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public worldProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(HuanYuMod.MOD_ID));
     }
 }

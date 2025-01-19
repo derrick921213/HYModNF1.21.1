@@ -1,6 +1,6 @@
 package com.huanyu_mod.item;
 
-import com.huanyu_mod.procedures.chisel;
+import com.huanyu_mod.procedure.chisel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;

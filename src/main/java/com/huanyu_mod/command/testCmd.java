@@ -1,6 +1,6 @@
 package com.huanyu_mod.command;
 
-import com.huanyu_mod.procedures.test;
+import com.huanyu_mod.procedure.test;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

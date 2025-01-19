@@ -1,6 +1,6 @@
 package com.huanyu_mod.command;
 
-import com.huanyu_mod.procedures.dimension_teleport;
+import com.huanyu_mod.procedure.dimensionTeleport;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -13,22 +13,22 @@ public class dimTpCmd {
         return Commands.literal("dimTp")
                 .then(Commands.argument("dimension", DimensionArgument.dimension())
                         .executes(arguments -> {
-                            dimension_teleport.execute(arguments);
+                            dimensionTeleport.execute(arguments);
                             return 0;
                         }).then(Commands.argument("position", BlockPosArgument.blockPos())
                                 .executes(arguments -> {
-                                    dimension_teleport.execute(arguments);
+                                    dimensionTeleport.execute(arguments);
                                     return 0;
                                 })
                         )
                 ).then(Commands.argument("players", EntityArgument.players())
                         .then(Commands.argument("dimension", DimensionArgument.dimension())
                                 .executes(arguments -> {
-                                    dimension_teleport.execute(arguments);
+                                    dimensionTeleport.execute(arguments);
                                     return 0;
                                 }).then(Commands.argument("position", BlockPosArgument.blockPos())
                                         .executes(arguments -> {
-                                            dimension_teleport.execute(arguments);
+                                            dimensionTeleport.execute(arguments);
                                             return 0;
                                         })
                                 )

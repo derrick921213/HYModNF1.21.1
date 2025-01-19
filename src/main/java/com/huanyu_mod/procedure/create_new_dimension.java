@@ -1,4 +1,4 @@
-package com.huanyu_mod.procedures;
+package com.huanyu_mod.procedure;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

@@ -15,7 +15,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModTabs {
-    public static final DeferredRegister<CreativeModeTab> DR_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HuanYuMod.MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> DR_TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HuanYuMod.MOD_ID);
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {

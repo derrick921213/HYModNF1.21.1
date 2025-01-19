@@ -1,4 +1,4 @@
-package com.huanyu_mod.dataGenerator;
+package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.block.ModBlocks;
 import net.minecraft.core.Holder;
@@ -10,8 +10,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-public class lootTableProBlock extends BlockLootSubProvider {
-    protected lootTableProBlock(HolderLookup.Provider registries) {
+public class lootTableProviderBlock extends BlockLootSubProvider {
+    protected lootTableProviderBlock(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 

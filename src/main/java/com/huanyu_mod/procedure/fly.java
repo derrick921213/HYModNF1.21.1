@@ -1,17 +1,14 @@
-package com.huanyu_mod.procedures;
+package com.huanyu_mod.procedure;
 
 import com.huanyu_mod.HuanYuMod;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.logging.LogUtils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import org.apache.logging.log4j.LogManager;
-import org.slf4j.Logger;
 
 public class fly {
     private static final String nbtName = "mayfly";

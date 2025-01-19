@@ -1,4 +1,4 @@
-package com.huanyu_mod.dataGenerator;
+package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
 import com.huanyu_mod.block.ModBlocks;
@@ -15,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class recipePro extends RecipeProvider implements IConditionBuilder {
-    public recipePro(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+public class recipeProvider extends RecipeProvider implements IConditionBuilder {
+    public recipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
 

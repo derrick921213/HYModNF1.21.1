@@ -1,4 +1,4 @@
-package com.huanyu_mod.procedures;
+package com.huanyu_mod.procedure;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

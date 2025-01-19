@@ -3,29 +3,28 @@ package com.huanyu_mod;
 import com.huanyu_mod.block.ModBlocks;
 import com.huanyu_mod.item.ModItems;
 import com.huanyu_mod.creativeTab.ModTabs;
+import com.huanyu_mod.procedure.mymod;
 import com.huanyu_mod.world.inventory.ModMenus;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(HuanYuMod.MOD_ID)
+// The value here should match an entry in the META-INF/neoforge.mods.toml file
 public class HuanYuMod {
     public static final String MOD_ID = "huanyu_mod";
+    public static final String MOD_AUTHER = "HuanYu_";
     public static final Logger LOGGER = LogUtils.getLogger();
     public static String getCurrentClassName() {
         return Thread.currentThread().getStackTrace()[2].getClassName()
@@ -37,35 +36,39 @@ public class HuanYuMod {
     public HuanYuMod(IEventBus modEventBus, ModContainer modContainer) {
 
         modEventBus.addListener(this::commonSetup);
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (HuanYuMod) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
-        NeoForge.EVENT_BUS.register(this);
-
+        /*
+        Register ourselves for server and other game events we are interested in.
+        Note that this is necessary if and only if we want *this* class (HuanYuMod) to respond directly to events.
+        Do not add this line { NeoForge.EVENT_BUS.register(this); }
+            if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
+        */
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         modEventBus.addListener(ModTabs::addCreative);
         ModTabs.register(modEventBus);
         ModMenus.register(modEventBus);
 
+        modEventBus.addListener(mymod::onServerStarting);
+
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
-
-
-    private void commonSetup(final FMLCommonSetupEvent event) {
-
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
+    /* -------------------- Common Event -------------------- */
+    private void commonSetup(final FMLCommonSetupEvent event) {}
+    //@SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        /*RegistryAccess.Writable registryAccess = (RegistryAccess.Writable) server.registryAccess();
+        Registry<DimensionType> dimensionTypeRegistry = registryAccess.ownedRegistryOrThrow(Registries.DIMENSION_TYPE);
 
+        dimensionTypeRegistry.register(
+                ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "custom_dimension"),
+                customDimensionType,
+                Lifecycle.stable()
+        );*/
     }
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
+    /* -------------------- MOD Client Event -------------------- */
+    @EventBusSubscriber(modid = HuanYuMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class modClient {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 

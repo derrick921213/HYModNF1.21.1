@@ -3,7 +3,6 @@ package com.huanyu_mod.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -17,9 +16,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class debug_block02 extends Block {
+public class debugBlock02 extends Block {
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
-    public debug_block02() {
+    public debugBlock02() {
         super(BlockBehaviour.Properties.of()
                 .sound(SoundType.AMETHYST)
                 .strength(1f, 1200f)
@@ -60,6 +59,6 @@ public class debug_block02 extends Block {
     }
     /*@Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        return open_dimension_editor_gui.execute(level, pos.getX(), pos.getY(), pos.getZ(), player);
+        return dimensionEditorProcedures.execute(level, pos.getX(), pos.getY(), pos.getZ(), player);
     }*/
 }

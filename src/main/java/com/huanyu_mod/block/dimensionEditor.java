@@ -1,6 +1,6 @@
 package com.huanyu_mod.block;
 
-import com.huanyu_mod.procedures.open_dimension_editor_gui;
+import com.huanyu_mod.procedure.dimensionEditorProcedures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
@@ -21,9 +21,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class dimension_editor extends Block {
+public class dimensionEditor extends Block {
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
-    public dimension_editor() {
+    public dimensionEditor() {
         super(Properties.of()
                 .sound(SoundType.AMETHYST)
                 .strength(1f, 1200f)
@@ -65,6 +65,6 @@ public class dimension_editor extends Block {
     }
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        return open_dimension_editor_gui.execute(level, pos.getX(), pos.getY(), pos.getZ(), player);
+        return dimensionEditorProcedures.openGui(level, pos.getX(), pos.getY(), pos.getZ(), player);
     }
 }

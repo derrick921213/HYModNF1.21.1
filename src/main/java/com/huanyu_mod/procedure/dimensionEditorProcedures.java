@@ -1,5 +1,6 @@
-package com.huanyu_mod.procedures;
+package com.huanyu_mod.procedure;
 
+import com.huanyu_mod.HuanYuMod;
 import com.huanyu_mod.world.inventory.dimension_editor_interfaceInv;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
@@ -12,11 +13,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 
-public class open_dimension_editor_gui {
-	public static InteractionResult execute(LevelAccessor levelAccessor, double x, double y, double z, Player player) {
+public class dimensionEditorProcedures {
+	public static InteractionResult openGui(LevelAccessor levelAccessor, double x, double y, double z, Player player) {
 		try {
 			if (player == null) return InteractionResult.FAIL;
 			if (player instanceof ServerPlayer _player) {
@@ -40,7 +40,7 @@ public class open_dimension_editor_gui {
                 return InteractionResult.FAIL;
             }
 		} catch (Exception e) {
-			//proceduresLOGGER.log(java.util.logging.Level.SEVERE, "An error occurred at ", e);
+			HuanYuMod.LOGGER.error("An error occurred at ", e);
 			return InteractionResult.FAIL;
 		}
 	}

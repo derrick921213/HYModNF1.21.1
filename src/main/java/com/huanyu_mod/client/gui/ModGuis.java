@@ -12,6 +12,6 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 public class ModGuis {
 	@SubscribeEvent
 	public static void clientLoad(RegisterMenuScreensEvent event) {
-		event.register(ModMenus.DIMENSION_EDITOR_INTERFACE.get(), dimension_editor_interfaceGui::new);
+		event.register(ModMenus.DIMENSION_EDITOR_INTERFACE.get(), dimensionEditorInterfaceGui::new);
 	}
 }

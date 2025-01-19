@@ -11,17 +11,16 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks DR_BLOCKS = DeferredRegister.createBlocks(HuanYuMod.MOD_ID);
 
     public static final DeferredBlock<Block> DIMENSION_EDITOR = registerBlock(
-            "dimension_editor", dimension_editor::new, dimension_editor.itemProperties());
+            "dimension_editor", dimensionEditor::new, dimensionEditor.itemProperties());
 
     public static final DeferredBlock<Block> DEBUG_BLOCK00 = registerBlock(
-            "debug_block00", debug_block00::new, debug_block00.itemProperties());
+            "debug_block00", debugBlock00::new, debugBlock00.itemProperties());
     public static final DeferredBlock<Block> DEBUG_BLOCK01 = registerBlock(
             "debug_block01",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -33,7 +32,7 @@ public class ModBlocks {
             new Item.Properties()
     );
     public static final DeferredBlock<Block> DEBUG_BLOCK02 = registerBlock(
-            "debug_block02", debug_block02::new, debug_block02.itemProperties());
+            "debug_block02", debugBlock02::new, debugBlock02.itemProperties());
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block, Item.Properties itemProperties) {
         DeferredBlock<T> deferredBlock = DR_BLOCKS.register(name, block);

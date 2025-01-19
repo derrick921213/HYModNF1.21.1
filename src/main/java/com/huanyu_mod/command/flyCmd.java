@@ -1,6 +1,6 @@
 package com.huanyu_mod.command;
 
-import com.huanyu_mod.procedures.fly;
+import com.huanyu_mod.procedure.fly;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;

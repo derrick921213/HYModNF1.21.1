@@ -1,4 +1,4 @@
-package com.huanyu_mod.procedures;
+package com.huanyu_mod.procedure;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
 
-public class dimension_teleport {
+public class dimensionTeleport {
     public static void execute(CommandContext<CommandSourceStack> context)  {
         try {
             Level world = context.getSource().getUnsidedLevel();

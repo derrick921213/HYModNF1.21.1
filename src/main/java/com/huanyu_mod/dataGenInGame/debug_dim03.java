@@ -27,18 +27,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalLong;
 
-public class debug_dim02 {
-    private static final String dim_name = HuanYuMod.getCurrentClassName();
+public class debug_dim03 {
+    public static final String DIM_NAME = HuanYuMod.getCurrentClassName();
     public static final ResourceKey<LevelStem> LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, dim_name));
+            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, DIM_NAME));
     public static final ResourceKey<Level> DIMENSION_LEVEL = ResourceKey.create(Registries.DIMENSION,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (dim_name + "_level")));
+            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_level")));
     public static final ResourceKey<DimensionType> DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (dim_name + "_type")));
+            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_type")));
 
     public static void setDimensionType(BootstrapContext<DimensionType> context) {
         context.register(DIMENSION_TYPE, new DimensionType(
-                OptionalLong.of(6000),
+                OptionalLong.of(6003),
                 false,
                 false,
                 false,
@@ -58,7 +58,7 @@ public class debug_dim02 {
     public static void setLevelStem(BootstrapContext<LevelStem> context) {
         HolderGetter<DimensionType> dimType = context.lookup(Registries.DIMENSION_TYPE);
         HolderGetter<Biome> biomeSet = context.lookup(Registries.BIOME);
-        //HolderGetter<StructureSet> structureSet = context.lookup(Registries.STRUCTURE_SET);
+        HolderGetter<StructureSet> structureSet = context.lookup(Registries.STRUCTURE_SET);
 
         List<FlatLayerInfo> layers = List.of(
                 new FlatLayerInfo(1, Blocks.BEDROCK)
@@ -66,10 +66,12 @@ public class debug_dim02 {
 
         Holder<Biome> biomeHolder = biomeSet.getOrThrow(Biomes.THE_VOID);
         Optional<HolderSet<StructureSet>> structures = Optional.empty();
+
         FlatLevelGeneratorSettings flatSettings = new FlatLevelGeneratorSettings(structures, biomeHolder, List.of());
         flatSettings = flatSettings.withBiomeAndLayers(layers, structures, biomeHolder);
         FlatLevelSource flatChunkGenerator = new FlatLevelSource(flatSettings);
         LevelStem levelStem = new LevelStem(dimType.getOrThrow(debug_dim00.DIMENSION_TYPE), flatChunkGenerator);
+
         context.register(LEVEL_STEM, levelStem);
     }
 }

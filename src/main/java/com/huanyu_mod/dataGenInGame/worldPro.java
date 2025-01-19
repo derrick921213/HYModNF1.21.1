@@ -13,10 +13,10 @@ import java.util.concurrent.CompletableFuture;
 public class worldPro extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.DIMENSION_TYPE, context -> {
-                debug_dim02.setDimensionType(context);
+                debug_dim03.setDimensionType(context);
             })
             .add(Registries.LEVEL_STEM, context -> {
-                debug_dim02.setLevelStem(context);
+                debug_dim03.setLevelStem(context);
             });
 
     public worldPro(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

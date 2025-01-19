@@ -1,4 +1,4 @@
-package com.huanyu_mod.dataGenerator;
+package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
 import com.huanyu_mod.block.ModBlocks;
@@ -12,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class tagProBlock extends BlockTagsProvider {
-    public tagProBlock(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+public class tagProviderBlock extends BlockTagsProvider {
+    public tagProviderBlock(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, HuanYuMod.MOD_ID, existingFileHelper);
     }
 

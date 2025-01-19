@@ -1,4 +1,4 @@
-package com.huanyu_mod.dataGenerator;
+package com.huanyu_mod.dataGenInModding;
 
 import com.huanyu_mod.HuanYuMod;
 import net.minecraft.core.HolderLookup;
@@ -15,21 +15,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+@EventBusSubscriber(modid = HuanYuMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class DataGenInModding {
+    @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        tagProBlock _tagProBlock =
-                generator.addProvider(event.includeServer(), new tagProBlock(packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new tagProItem(packOutput, lookupProvider, _tagProBlock.contentsGetter(), existingFileHelper));
+        tagProviderBlock _tagProBlock =
+                generator.addProvider(event.includeServer(), new tagProviderBlock(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new tagProviderItem(packOutput, lookupProvider, _tagProBlock.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTableProvider(
                 packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(lootTableProBlock::new, LootContextParamSets.BLOCK)),
+                List.of(new LootTableProvider.SubProviderEntry(lootTableProviderBlock::new, LootContextParamSets.BLOCK)),
                 lookupProvider));
-        generator.addProvider(event.includeServer(), new recipePro(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new worldPro(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new recipeProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new worldProvider(packOutput, lookupProvider));
     }
 }

@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.OptionalLong;
 
 public class debug_dim00 {
-    private static final String dim_name = HuanYuMod.getCurrentClassName();
+    private static final String DIM_NAME = HuanYuMod.getCurrentClassName();
     public static final ResourceKey<LevelStem> LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, dim_name));
+            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, DIM_NAME));
     public static final ResourceKey<Level> DIMENSION_LEVEL = ResourceKey.create(Registries.DIMENSION,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (dim_name + "_level")));
+            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_level")));
     public static final ResourceKey<DimensionType> DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (dim_name + "_type")));
+            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_type")));
 
     public static void setDimensionType(BootstrapContext<DimensionType> context) {
         context.register(DIMENSION_TYPE, new DimensionType(
