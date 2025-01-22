@@ -1,6 +1,7 @@
-package com.huanyu_mod.dataGenInModding;
+package com.huanyu_mod.dataGenerator;
 
-import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.dataGenerator.provider.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = HuanYuMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = HYEng.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class _DataGenInModding {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
@@ -24,16 +25,18 @@ public class _DataGenInModding {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        tagProviderBlock tagProviderBlock = generator.addProvider(event.includeServer(), new tagProviderBlock(
+        tagBlock tagProviderBlock = generator.addProvider(event.includeServer(), new tagBlock(
                 packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new tagProviderItem(
+        generator.addProvider(event.includeServer(), new tagItem(
                 packOutput, lookupProvider, tagProviderBlock.contentsGetter(), existingFileHelper));
+        /**/
         generator.addProvider(event.includeServer(), new LootTableProvider(
                 packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(
-                        lootTableProviderBlock::new, LootContextParamSets.BLOCK)),
+                        lootTableBlock::new, LootContextParamSets.BLOCK)),
                 lookupProvider));
-        generator.addProvider(event.includeServer(), new recipeProvider(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new worldProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new recipe(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new dimension(packOutput, lookupProvider));
+
     }
 }

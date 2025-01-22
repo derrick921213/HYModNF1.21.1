@@ -1,13 +1,12 @@
 package com.huanyu_mod.world.dimension;
 
-import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.core.HYEng;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.Level;
@@ -26,47 +25,52 @@ import java.util.Optional;
 import java.util.OptionalLong;
 
 public class debug_dim01 {
-    public static final String DIM_NAME = HuanYuMod.getCurrentClassName();
-    public static final ResourceKey<LevelStem> LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, DIM_NAME));
-    public static final ResourceKey<Level> DIMENSION_LEVEL = ResourceKey.create(Registries.DIMENSION,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_level")));
-    public static final ResourceKey<DimensionType> DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_type")));
+    public static final String CLASS_NAME = HYEng.getCurrentClassName();
+    public static final ResourceKey<LevelStem> LEVEL_STEM_RESOURCE_KEY = ResourceKey.create(Registries.LEVEL_STEM,
+            HYEng.makeRL(CLASS_NAME));
+    public static final ResourceKey<Level> LEVEL_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION,
+            HYEng.makeRL((CLASS_NAME + "_level")));
+    public static final ResourceKey<DimensionType> DIMENSION_TYPE_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION_TYPE,
+            HYEng.makeRL((CLASS_NAME + "_type")));
+    public static final DimensionType DE_DIMENSION_TYPE = new DimensionType(
+            OptionalLong.of(6101),
+            false,
+            false,
+            false,
+            false,
+            1.0,
+            true,
+            true,
+            0,
+            512,
+            512,
+            BlockTags.INFINIBURN_OVERWORLD,
+            BuiltinDimensionTypes.OVERWORLD_EFFECTS,
+            1.0f,
+            new DimensionType.MonsterSettings(true, false, ConstantInt.of(0), 0)
+    );
+    public static final List<FlatLayerInfo> FLAT_LAYER_INFOS = List.of(
+            new FlatLayerInfo(1, Blocks.BEDROCK)
+    );
 
     public static void setDimensionType(BootstrapContext<DimensionType> context) {
-        context.register(DIMENSION_TYPE, new DimensionType(
-                OptionalLong.of(6101),
-                false,
-                false,
-                false,
-                false,
-                1.0,
-                true,
-                true,
-                0,
-                512,
-                512,
-                BlockTags.INFINIBURN_OVERWORLD,
-                BuiltinDimensionTypes.OVERWORLD_EFFECTS,
-                1.0f,
-                new DimensionType.MonsterSettings(true, false, ConstantInt.of(0), 0)
-        ));
+        context.register(DIMENSION_TYPE_RESOURCE_KEY, DE_DIMENSION_TYPE);
     }
     public static void setLevelStem(BootstrapContext<LevelStem> context) {
-        HolderGetter<DimensionType> dimType = context.lookup(Registries.DIMENSION_TYPE);
-        HolderGetter<Biome> biomeSet = context.lookup(Registries.BIOME);
-        HolderGetter<StructureSet> structureSet = context.lookup(Registries.STRUCTURE_SET);
-        List<FlatLayerInfo> layers = List.of(
-                new FlatLayerInfo(1, Blocks.BEDROCK)
-        );
-        Optional<HolderSet<StructureSet>> structures = Optional.empty();
-        Holder<Biome> biomeHolder = biomeSet.getOrThrow(Biomes.THE_VOID);
-        FlatLevelGeneratorSettings flatSettings = new FlatLevelGeneratorSettings(Optional.empty(), biomeHolder, List.of());
-        flatSettings = flatSettings.withBiomeAndLayers(layers, structures, biomeHolder);
+        HolderGetter<DimensionType> dimensionTypeHG = context.lookup(Registries.DIMENSION_TYPE);
 
+        HolderGetter<Biome> biomeHG = context.lookup(Registries.BIOME);
+        Holder<Biome> biomeHolder = biomeHG.getOrThrow(Biomes.THE_VOID);
+
+        HolderGetter<StructureSet> structureSetHG = context.lookup(Registries.STRUCTURE_SET);
+        Optional<HolderSet<StructureSet>> structures = Optional.empty();
+
+        FlatLevelGeneratorSettings flatSettings = new FlatLevelGeneratorSettings(Optional.empty(), biomeHolder, List.of());
+        flatSettings = flatSettings.withBiomeAndLayers(FLAT_LAYER_INFOS, structures, biomeHolder);
         FlatLevelSource flatChunkGenerator = new FlatLevelSource(flatSettings);
-        LevelStem levelStem = new LevelStem(dimType.getOrThrow(debug_dim00.DIMENSION_TYPE), flatChunkGenerator);
-        context.register(LEVEL_STEM, levelStem);
+        context.register(LEVEL_STEM_RESOURCE_KEY, new LevelStem(
+                dimensionTypeHG.getOrThrow(debug_dim00.DIMENSION_TYPE_RESOURCE_KEY),
+                flatChunkGenerator
+        ));
     }
 }

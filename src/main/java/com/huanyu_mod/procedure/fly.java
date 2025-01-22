@@ -1,6 +1,6 @@
 package com.huanyu_mod.procedure;
 
-import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.core.HYEng;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
@@ -49,7 +49,7 @@ public class fly {
                 }
             }
         } catch (CommandSyntaxException e) {
-            HuanYuMod.LOGGER.error("An error occurred at ", e);
+            HYEng.LOGGER.error("An error occurred at ", e);
         }
         return;
     }

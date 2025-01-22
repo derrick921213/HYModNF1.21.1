@@ -1,8 +1,8 @@
-package com.huanyu_mod.client.gui;
+package com.huanyu_mod.client.screen;
 
-import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.core.HYEng;
 import com.huanyu_mod.payload.dimensionEditorPayload;
-import com.huanyu_mod.world.inventory.dimensionEditorInterfaceInv;
+import com.huanyu_mod.world.menu.dimensionEditorGuiInv;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -18,20 +18,19 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
-public class dimensionEditorInterfaceGui extends AbstractContainerScreen<dimensionEditorInterfaceInv> {
-	private final static HashMap<String, Object> guiState = dimensionEditorInterfaceInv.guiState;
+public class dimensionEditorGuiScreen extends AbstractContainerScreen<dimensionEditorGuiInv> {
+	private final static HashMap<String, Object> guiState = dimensionEditorGuiInv.guiState;
 	private final Level level;
 	private final Vec3 blockPos;
 	private final Player player;
 
-	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
-			HuanYuMod.MOD_ID, "textures/screens/dimension_editor_bg.png");
+	private static final ResourceLocation texture = HYEng.makeRL("textures/screens/dimension_editor_gui_bg.png");
 	Button button_time_00;
 	Button button_time_06;
 	Button button_time_12;
 	Button button_time_18;
 
-	public dimensionEditorInterfaceGui(dimensionEditorInterfaceInv container, Inventory inventory, Component component) {
+	public dimensionEditorGuiScreen(dimensionEditorGuiInv container, Inventory inventory, Component component) {
 		super(container, inventory, component);
 		this.level = container.level;
 		this.blockPos = new Vec3(container.blockX, container.blockY, container.blockZ);
@@ -58,7 +57,7 @@ public class dimensionEditorInterfaceGui extends AbstractContainerScreen<dimensi
 	@Override
 	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
 		guiGraphics.drawString(this.font,
-				Component.translatable("gui.huanyu_mod.dimensionEditor.dimension_editor_title"),
+				Component.translatable("gui.huanyu_mod.dimension_editor_gui.dimension_editor_title"),
 				10, 10, 0x000000, false);
 	}
 	@Override
@@ -76,28 +75,28 @@ public class dimensionEditorInterfaceGui extends AbstractContainerScreen<dimensi
 		super.init();
 		int[] time_buttonPosSize = {this.leftPos + 10, this.topPos + 20, 20, 20};
 		button_time_00 = Button.builder(
-				Component.translatable("gui.huanyu_mod.dimensionEditor.button_time_00"), e -> {
+				Component.translatable("gui.huanyu_mod.dimension_editor_gui.button_time_00"), e -> {
 					PacketDistributor.sendToServer(new dimensionEditorPayload(0, blockPos));
 				}).bounds(time_buttonPosSize[0], time_buttonPosSize[1], time_buttonPosSize[2], time_buttonPosSize[3])
 				.build();
 		guiState.put("button:button_time_00", button_time_00);
 		this.addRenderableWidget(button_time_00);
 		button_time_06 = Button.builder(
-				Component.translatable("gui.huanyu_mod.dimensionEditor.button_time_06"), e -> {
+				Component.translatable("gui.huanyu_mod.dimension_editor_gui.button_time_06"), e -> {
 					PacketDistributor.sendToServer(new dimensionEditorPayload(1, blockPos));
 				}).bounds(time_buttonPosSize[0] + 25, time_buttonPosSize[1], time_buttonPosSize[2], time_buttonPosSize[3])
 				.build();
 		guiState.put("button:button_time_06", button_time_06);
 		this.addRenderableWidget(button_time_06);
 		button_time_12 = Button.builder(
-				Component.translatable("gui.huanyu_mod.dimensionEditor.button_time_12"), e -> {
+				Component.translatable("gui.huanyu_mod.dimension_editor_gui.button_time_12"), e -> {
 					PacketDistributor.sendToServer(new dimensionEditorPayload(2, blockPos));
 				}).bounds(time_buttonPosSize[0] + 50, time_buttonPosSize[1], time_buttonPosSize[2], time_buttonPosSize[3])
 				.build();
 		guiState.put("button:button_time_12", button_time_12);
 		this.addRenderableWidget(button_time_12);
 		button_time_18 = Button.builder(
-				Component.translatable("gui.huanyu_mod.dimensionEditor.button_time_18"), e -> {
+				Component.translatable("gui.huanyu_mod.dimension_editor_gui.button_time_18"), e -> {
 					PacketDistributor.sendToServer(new dimensionEditorPayload(3, blockPos));
 				}).bounds(time_buttonPosSize[0] + 75, time_buttonPosSize[1], time_buttonPosSize[2], time_buttonPosSize[3])
 				.build();

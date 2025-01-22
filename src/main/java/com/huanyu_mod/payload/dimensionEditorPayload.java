@@ -1,13 +1,13 @@
 package com.huanyu_mod.payload;
 
-import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.procedure.test;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public record dimensionEditorPayload(int buttonID, Vec3 blockPos) implements CustomPacketPayload {
     public static final Type<dimensionEditorPayload> TYPE =
-            new Type<>(ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "my_data1"));
+            new Type<>(HYEng.makeRL("my_data1"));
     public static final StreamCodec<RegistryFriendlyByteBuf, dimensionEditorPayload> STREAM_CODEC = StreamCodec.of(
             (RegistryFriendlyByteBuf buffer, dimensionEditorPayload data) -> {
                 buffer.writeInt(data.buttonID);
@@ -35,11 +35,14 @@ public record dimensionEditorPayload(int buttonID, Vec3 blockPos) implements Cus
             System.out.println(dimensionEditorPayload.class.getName() + " Output: " + buttonID);
             System.out.println(dimensionEditorPayload.class.getName() + " Output: " + blockPos);
 
-            if (!level.hasChunkAt(new BlockPos((int) blockPos.x, (int) blockPos.y, (int) blockPos.z)))
-                return;
+            if (!level.hasChunkAt(new BlockPos((int) blockPos.x, (int) blockPos.y, (int) blockPos.z))) return;
             switch (buttonID) {
                 case 0: break;
-                case 1: break;
+                case 1:
+                    test.executeU(level, blockPos, player);
+                    break;
+                case 2: break;
+                case 3: break;
                 default: break;
             }
         } catch (Exception e) {

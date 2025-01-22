@@ -1,6 +1,6 @@
-package com.huanyu_mod.dataGenInModding;
+package com.huanyu_mod.dataGenerator.provider;
 
-import com.huanyu_mod.block._ModBlocks;
+import com.huanyu_mod.core.register.HYBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -10,17 +10,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-public class lootTableProviderBlock extends BlockLootSubProvider {
-    protected lootTableProviderBlock(HolderLookup.Provider registries) {
+public class lootTableBlock extends BlockLootSubProvider {
+    public lootTableBlock(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
     @Override
     protected void generate() {
-        dropSelf(_ModBlocks.DIMENSION_EDITOR.get());
-        dropSelf(_ModBlocks.DEBUG_BLOCK00.get());
-        dropSelf(_ModBlocks.DEBUG_BLOCK01.get());
-        dropSelf(_ModBlocks.DEBUG_BLOCK02.get());
+        dropSelf(HYBlocks.DIMENSION_EDITOR.get());
+        dropSelf(HYBlocks.DEBUG_BLOCK00.get());
+        dropSelf(HYBlocks.DEBUG_BLOCK01.get());
+        dropSelf(HYBlocks.DEBUG_BLOCK02.get());
 
         /*this.add(ModBlocks.SAPPHIRE_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.SAPPHIRE_ORE.get(), ModItems.RAW_SAPPHIRE.get()));
@@ -55,6 +55,6 @@ public class lootTableProviderBlock extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return _ModBlocks.DR_BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+        return HYBlocks.DR.getEntries().stream().map(Holder::value)::iterator;
     }
 }

@@ -1,13 +1,12 @@
-package com.huanyu_mod.dataGenInModding;
+package com.huanyu_mod.dataGenerator.provider;
 
-import com.huanyu_mod.HuanYuMod;
-import com.huanyu_mod.block._ModBlocks;
-import com.huanyu_mod.item._ModItems;
+import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.register.HYBlocks;
+import com.huanyu_mod.core.register.HYItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -15,35 +14,35 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class recipeProvider extends RecipeProvider implements IConditionBuilder {
-    public recipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+public class recipe extends RecipeProvider implements IConditionBuilder {
+    public recipe(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         TagKey<Item> tag_debug_item = TagKey.create(Registries.ITEM,
-                ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_item"));
+                HYEng.makeRL("debug_item"));
         TagKey<Item> tag_debug_block = TagKey.create(Registries.ITEM,
-                ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_block"));
+                HYEng.makeRL("debug_block"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, _ModBlocks.DEBUG_BLOCK00.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HYBlocks.DEBUG_BLOCK00.get())
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
                 .define('#', tag_debug_item)
                 .unlockedBy("has_debug_item", has(tag_debug_item))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_block00_0"));
+                .save(recipeOutput, HYEng.makeRL("debug_block00_0"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, _ModItems.DEBUG_ITEM00.get(), 9)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HYItems.DEBUG_ITEM00.get(), 9)
                 .requires(tag_debug_block)
                 .unlockedBy("has_debug_item", has(tag_debug_block))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_item00_0"));
+                .save(recipeOutput, HYEng.makeRL("debug_item00_0"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, _ModItems.DEBUG_ITEM00.get(), 1)
-                .requires(_ModItems.DEBUG_ITEM01.get())
-                .unlockedBy("has_debug_item", has(_ModItems.DEBUG_ITEM00))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "debug_item00_1"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HYItems.DEBUG_ITEM00.get(), 1)
+                .requires(HYItems.DEBUG_ITEM01.get())
+                .unlockedBy("has_debug_item", has(HYItems.DEBUG_ITEM00))
+                .save(recipeOutput, HYEng.makeRL("debug_item00_1"));
         /*
         List<ItemLike> BISMUTH_SMELTABLES = List.of(ModItems.RAW_BISMUTH,
                 ModBlocks.BISMUTH_ORE, ModBlocks.BISMUTH_DEEPSLATE_ORE);

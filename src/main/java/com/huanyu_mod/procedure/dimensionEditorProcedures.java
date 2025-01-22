@@ -1,7 +1,7 @@
 package com.huanyu_mod.procedure;
 
-import com.huanyu_mod.HuanYuMod;
-import com.huanyu_mod.world.inventory.dimensionEditorInterfaceInv;
+import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.world.menu.dimensionEditorGuiInv;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -32,7 +32,7 @@ public class dimensionEditorProcedures {
 					}
 					@Override
 					public AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory, @NotNull Player _player) {
-						return new dimensionEditorInterfaceInv(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
+						return new dimensionEditorGuiInv(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
 					}
 				}, blockPos);
                 return InteractionResult.SUCCESS;
@@ -40,7 +40,7 @@ public class dimensionEditorProcedures {
                 return InteractionResult.FAIL;
             }
 		} catch (Exception e) {
-			HuanYuMod.LOGGER.error("An error occurred at ", e);
+			HYEng.LOGGER.error("An error occurred at ", e);
 			return InteractionResult.FAIL;
 		}
 	}

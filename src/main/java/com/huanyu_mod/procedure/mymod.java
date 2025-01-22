@@ -1,9 +1,8 @@
 package com.huanyu_mod.procedure;
 
-import com.huanyu_mod.HuanYuMod;
+import com.huanyu_mod.core.HYEng;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.Level;
@@ -15,13 +14,13 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import java.util.OptionalLong;
 
 public class mymod {
-    public static final String DIM_NAME = HuanYuMod.getCurrentClassName();
+    public static final String DIM_NAME = HYEng.getCurrentClassName();
     public static final ResourceKey<LevelStem> LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, DIM_NAME));
+            HYEng.makeRL(DIM_NAME));
     public static final ResourceKey<Level> DIMENSION_LEVEL = ResourceKey.create(Registries.DIMENSION,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_level")));
+            HYEng.makeRL((DIM_NAME + "_level")));
     public static final ResourceKey<DimensionType> DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
-            ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, (DIM_NAME + "_type")));
+            HYEng.makeRL((DIM_NAME + "_type")));
 
     public static void onServerStarting(RegisterEvent event) {
         DimensionType customDimensionType = new DimensionType(
@@ -44,7 +43,7 @@ public class mymod {
 
         if (event.getRegistryKey() == Registries.DIMENSION_TYPE) {
             event.register(Registries.DIMENSION_TYPE, helper -> {helper.register(
-                    ResourceLocation.fromNamespaceAndPath(HuanYuMod.MOD_ID, "custom_dimension_type"), customDimensionType);
+                    HYEng.makeRL("custom_dimension_type"), customDimensionType);
             });
             System.out.println(mymod.class.getName() + " Output: Generate Success");
         }

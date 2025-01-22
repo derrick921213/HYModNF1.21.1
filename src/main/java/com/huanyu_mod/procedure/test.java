@@ -1,5 +1,9 @@
 package com.huanyu_mod.procedure;
 
+import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.HYEngBase;
+import com.huanyu_mod.core.HYEngServer;
+import com.huanyu_mod.core.register.HYDimensions;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;
@@ -19,34 +23,33 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class test {
-    private static final Logger LOGGER = Logger.getLogger(test.class.getName());
+    public static final String CLASS_NAME = HYEng.getCurrentClassName();
     public static void tick(ServerPlayer player, CompoundTag nbt) {
 
     }
     public static void executeU(Level level, Vec3 blockPos, Player player) {
-        System.out.println(test.class.getName() + " Output: " + level);
-        System.out.println(test.class.getName() + " Output: " + blockPos);
-        System.out.println(test.class.getName() + " Output: " + player.getClass());
+        System.out.println(CLASS_NAME + " Output: " + level);
+        System.out.println(CLASS_NAME + " Output: " + blockPos);
+        System.out.println(CLASS_NAME + " Output: " + player.getClass());
         if (level instanceof ServerLevel serverLevel) {
             Path dataPackPath = serverLevel.getServer().getWorldPath(LevelResource.DATAPACK_DIR);
-            System.out.println(test.class.getName() + " Output: " + dataPackPath.toAbsolutePath());
+            System.out.println(CLASS_NAME + " Output: " + dataPackPath.toAbsolutePath());
         }
-        if (player instanceof ServerPlayer serverPlayer) {
-            Path dataPackPath = serverPlayer.getServer().getWorldPath(LevelResource.DATAPACK_DIR);
-            System.out.println(test.class.getName() + " Output: " + dataPackPath.toAbsolutePath());
-        }
+        Path dataPackPath = HYEng.instance().getServer().getWorldPath(LevelResource.DATAPACK_DIR);
+        System.out.println(CLASS_NAME + " Output: " + dataPackPath.toAbsolutePath());
     }
     public static void executeA(CommandContext<CommandSourceStack> context) {
         MinecraftServer server = context.getSource().getServer();
+
+        HYDimensions.register(server);
+
         Registry<DimensionType> dimensionTypeRegistry =
                 server.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE);
         for (Map.Entry<ResourceKey<DimensionType>, DimensionType> dimensionEntry : dimensionTypeRegistry.entrySet()) {
-            ResourceKey<DimensionType> dimensionKey = dimensionEntry.getKey();
-            DimensionType dimension = dimensionEntry.getValue();
-            System.out.println(test.class.getName() + " Output: " + dimension);
+            System.out.println(CLASS_NAME + " Dimension Key Found: " + dimensionEntry.getKey().location());
         }
         for (ServerLevel level : server.getAllLevels()) {
-            System.out.println("Loaded Dimension: " + level.dimension().location());
+            System.out.println(CLASS_NAME + " Loaded Dimension: " + level.dimension().location());
         }
     }
     private static void temp() {

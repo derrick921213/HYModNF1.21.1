@@ -1,5 +1,6 @@
-package com.huanyu_mod.world.inventory;
+package com.huanyu_mod.world.menu;
 
+import com.huanyu_mod.core.register.HYMenus;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
@@ -19,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class dimensionEditorInterfaceInv extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
+public class dimensionEditorGuiInv extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
 	public final static HashMap<String, Object> guiState = new HashMap<>();
 	public final Level level;
 	public final Player player;
@@ -32,8 +33,8 @@ public class dimensionEditorInterfaceInv extends AbstractContainerMenu implement
 	private Entity boundEntity = null;
 	private BlockEntity boundBlockEntity = null;
 
-	public dimensionEditorInterfaceInv(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(_ModMenus.DIMENSION_EDITOR_INTERFACE.get(), id);
+	public dimensionEditorGuiInv(int id, Inventory inv, FriendlyByteBuf extraData) {
+		super(HYMenus.DIMENSION_EDITOR_GUI.get(), id);
 		this.player = inv.player;
 		this.level = inv.player.level();
 		this.internal = new ItemStackHandler(0);
