@@ -19,7 +19,7 @@ import net.minecraft.world.level.storage.LevelResource;
 import java.nio.file.Path;
 import java.util.Map;
 
-import appeng.api.networking.GridServices;
+import appeng.api.stacks.AEKeyTypes;
 
 public class test {
     public final static String CLASS_NAME = HYEng.getCurrentClassName();
