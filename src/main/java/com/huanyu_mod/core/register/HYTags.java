@@ -15,7 +15,7 @@ public class HYTags {
     }
 
     public static class Items {
-        public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
+        public final static TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(HYEng.makeRL(name));
         }

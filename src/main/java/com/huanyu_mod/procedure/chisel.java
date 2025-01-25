@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.Map;
 
 public class chisel {
-    private static final Map<Block, Block> CLICK_BLOCK_MAP = Map.of(
+    private final static Map<Block, Block> CLICK_BLOCK_MAP = Map.of(
             Blocks.GRASS_BLOCK, Blocks.DIRT,
             Blocks.DIRT, Blocks.GRASS_BLOCK,
             HYBlocks.DEBUG_BLOCK00.get(), HYBlocks.DEBUG_BLOCK01.get()

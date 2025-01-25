@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class debug_block00 extends Block {
-    public static final DirectionProperty FACING = DirectionalBlock.FACING;
+    public final static DirectionProperty FACING = DirectionalBlock.FACING;
     public debug_block00() {
         super(BlockBehaviour.Properties
                 .of()

@@ -13,11 +13,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.Collection;
 
 public class HYMenus {
-	private static final String CLASS_NAME = HYEng.getCurrentClassName();
-	public static final DeferredRegister<MenuType<?>> DR = DeferredRegister.create(Registries.MENU, HYEng.MOD_ID);
+	private final static String CLASS_NAME = HYEng.getCurrentClassName();
+	public final static DeferredRegister<MenuType<?>> DR = DeferredRegister.create(Registries.MENU, HYEng.MOD_ID);
 
-	public static final DeferredHolder<MenuType<?>, MenuType<dimensionEditorGuiInv>> DIMENSION_EDITOR_GUI =
-			DR.register("dimension_editor_gui", () -> IMenuTypeExtension.create(dimensionEditorGuiInv::new));
+	public final static DeferredHolder<MenuType<?>, MenuType<dimensionEditorGuiMenu>> DIMENSION_EDITOR_GUI =
+			DR.register("dimension_editor_gui", () -> IMenuTypeExtension.create(dimensionEditorGuiMenu::new));
 
 	public static Collection<DeferredHolder<MenuType<?>, ? extends MenuType<?>>> register(IEventBus eventBus) {
 		DR.register(eventBus);

@@ -15,11 +15,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.Collection;
 
 public class HYDimensions {
-    private static final String CLASS_NAME = HYEng.getCurrentClassName();
-    public static final DeferredRegister<DimensionType> DR_TYPE =
+    private final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static DeferredRegister<DimensionType> DR_TYPE =
             DeferredRegister.create(Registries.DIMENSION_TYPE, HYEng.MOD_ID);
 
-    public static final DeferredHolder<DimensionType, DimensionType> DEBUG_DIM02 =
+    public final static DeferredHolder<DimensionType, DimensionType> DEBUG_DIM02 =
             DR_TYPE.register("debug_dim02", () -> debug_dim02.DE_DIMENSION_TYPE);
 
     public static Collection<DeferredHolder<DimensionType, ? extends DimensionType>> register(IEventBus eventBus) {

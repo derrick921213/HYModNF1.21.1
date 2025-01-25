@@ -1,11 +1,10 @@
 package com.huanyu_mod.procedure;
 
 import com.huanyu_mod.core.HYEng;
-import com.huanyu_mod.core.HYEngBase;
-import com.huanyu_mod.core.HYEngServer;
 import com.huanyu_mod.core.register.HYDimensions;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -17,17 +16,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.storage.LevelResource;
-import net.minecraft.world.phys.Vec3;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.logging.Logger;
+
+import appeng.api.networking.GridServices;
 
 public class test {
-    public static final String CLASS_NAME = HYEng.getCurrentClassName();
-    public static void tick(ServerPlayer player, CompoundTag nbt) {
-
+    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public static void tick(ServerPlayer serverPlayer) {
+        CompoundTag nbt = serverPlayer.getPersistentData();
+        if (!nbt.contains("hyd", CompoundTag.TAG_COMPOUND)) nbt.put("hyd", new CompoundTag());
+        nbt = nbt.getCompound("hyd");
     }
-    public static void executeU(Level level, Vec3 blockPos, Player player) {
+    public static void executeU(Level level, BlockPos blockPos, Player player) {
         System.out.println(CLASS_NAME + " Output: " + level);
         System.out.println(CLASS_NAME + " Output: " + blockPos);
         System.out.println(CLASS_NAME + " Output: " + player.getClass());

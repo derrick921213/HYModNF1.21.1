@@ -19,6 +19,15 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+    maven {
+        name "Modmaven"
+        url "https://modmaven.dev/"
+        // For Gradle 5.1 and above, limit it to just AE2
+        content {
+            includeGroup 'appeng'
+        }
+    }
+
 }
 
 base {
@@ -134,6 +143,8 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    compileOnly "appeng:appliedenergistics2-neoforge:${project.appeng_version}:api"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -150,7 +161,9 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_description        : mod_description,
+            appeng_version         : appeng_version,
+            appeng_version_range   : appeng_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties

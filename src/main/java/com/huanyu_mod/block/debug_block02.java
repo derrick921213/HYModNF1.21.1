@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class debug_block02 extends Block {
-    public static final DirectionProperty FACING = DirectionalBlock.FACING;
+    public final static DirectionProperty FACING = DirectionalBlock.FACING;
     public debug_block02() {
         super(BlockBehaviour.Properties.of()
                 .sound(SoundType.AMETHYST)

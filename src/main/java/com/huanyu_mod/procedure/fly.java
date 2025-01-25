@@ -11,22 +11,24 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 public class fly {
-    private static final String nbtName = "mayfly";
-
-    public static void tick(ServerPlayer player, CompoundTag nbt) {
-        if (!nbt.contains(nbtName)) nbt.putBoolean(nbtName, false);
-        if (player.isCreative() || player.isSpectator()) return;
-        if (nbt.getBoolean(nbtName)) {
-            if (!player.getAbilities().mayfly) {
-                player.getAbilities().mayfly = true;
-                player.onUpdateAbilities();
-                player.displayClientMessage(Component.translatable("message.huanyu_mod.enable_fly"), true);
+    private final static String nbtName = "mayfly";
+    public static void tick(ServerPlayer serverPlayer) {
+        CompoundTag compoundTag = serverPlayer.getPersistentData();
+        if (!compoundTag.contains("hyd", CompoundTag.TAG_COMPOUND)) compoundTag.put("hyd", new CompoundTag());
+        compoundTag = compoundTag.getCompound("hyd");
+        if (!compoundTag.contains(nbtName)) compoundTag.putBoolean(nbtName, false);
+        if (serverPlayer.isCreative() || serverPlayer.isSpectator()) return;
+        if (compoundTag.getBoolean(nbtName)) {
+            if (!serverPlayer.getAbilities().mayfly) {
+                serverPlayer.getAbilities().mayfly = true;
+                serverPlayer.onUpdateAbilities();
+                serverPlayer.displayClientMessage(Component.translatable("message.huanyu_mod.enable_fly"), true);
             }
         } else {
-            if (player.getAbilities().mayfly) {
-                player.getAbilities().mayfly = false;
-                player.onUpdateAbilities();
-                player.displayClientMessage(Component.translatable("message.huanyu_mod.disable_fly"), true);
+            if (serverPlayer.getAbilities().mayfly) {
+                serverPlayer.getAbilities().mayfly = false;
+                serverPlayer.onUpdateAbilities();
+                serverPlayer.displayClientMessage(Component.translatable("message.huanyu_mod.disable_fly"), true);
             }
         }
         return;

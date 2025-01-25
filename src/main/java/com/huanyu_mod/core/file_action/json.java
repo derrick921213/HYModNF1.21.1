@@ -12,13 +12,18 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class json {
-    public static final String CLASS_NAME = HYEng.getCurrentClassName();
-    public static List<String> loadJsonList(ResourceLocation resourceLocation, MinecraftServer server) {
+    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public static List<String> loadJsonListString(ResourceLocation resourceLocation, String objName, MinecraftServer server) {
         List<String> _return = List.of();
         try {
-            _return = new Gson().fromJson(
-                    JsonParser.parseReader(new InputStreamReader(server.getResourceManager().open(resourceLocation))),
-                    new TypeToken<List<String>>() {}.getType());
+            var jsonElement = JsonParser.parseReader(
+                    new InputStreamReader(server.getResourceManager().open(resourceLocation)));
+            if (jsonElement.isJsonObject()) {
+                _return = new Gson().fromJson(
+                        jsonElement.getAsJsonObject().getAsJsonArray(objName),
+                        new TypeToken<List<String>>(){}.getType()
+                );
+            }
         } catch (IOException e) {
             System.err.println(CLASS_NAME + " Failed to load Json: " + e.getMessage());
         }

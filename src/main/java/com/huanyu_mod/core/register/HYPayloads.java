@@ -16,18 +16,19 @@ public class HYPayloads {
     public static void registerPayloadHandlers(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar(HYEng.MOD_ID).executesOn(HandlerThread.NETWORK);
         registrar.playBidirectional(
-                MyData0.TYPE, MyData0.STREAM_CODEC,
-                new DirectionalPayloadHandler<>(
-                        MyData0.ClientPayloadHandler::handleDataOnNetwork,
-                        MyData0.ServerPayloadHandler::handleDataOnNetwork
-                )
-        );
-        registrar.playBidirectional(
                 dimensionEditorPayload.TYPE, dimensionEditorPayload.STREAM_CODEC,
                 new DirectionalPayloadHandler<>(
                         dimensionEditorPayload.ClientPayloadHandler::handleDataOnNetwork,
                         dimensionEditorPayload.ServerPayloadHandler::handleDataOnNetwork
                 )
         );
+        registrar.playBidirectional(
+                MyData0.TYPE, MyData0.STREAM_CODEC,
+                new DirectionalPayloadHandler<>(
+                        MyData0.ClientPayloadHandler::handleDataOnNetwork,
+                        MyData0.ServerPayloadHandler::handleDataOnNetwork
+                )
+        );
+
     }
 }

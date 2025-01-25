@@ -9,9 +9,9 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 
 public record MyData0(String name) implements CustomPacketPayload {
-    public static final Type<MyData0> TYPE =
+    public final static Type<MyData0> TYPE =
             new Type<>(HYEng.makeRL("my_data0"));
-    public static final StreamCodec<ByteBuf, MyData0> STREAM_CODEC = StreamCodec.composite(
+    public final static StreamCodec<ByteBuf, MyData0> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.STRING_UTF8,
             MyData0::name,
             MyData0::new

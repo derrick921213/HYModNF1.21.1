@@ -14,12 +14,12 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import java.util.OptionalLong;
 
 public class mymod {
-    public static final String DIM_NAME = HYEng.getCurrentClassName();
-    public static final ResourceKey<LevelStem> LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM,
+    public final static String DIM_NAME = HYEng.getCurrentClassName();
+    public final static ResourceKey<LevelStem> LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM,
             HYEng.makeRL(DIM_NAME));
-    public static final ResourceKey<Level> DIMENSION_LEVEL = ResourceKey.create(Registries.DIMENSION,
+    public final static ResourceKey<Level> DIMENSION_LEVEL = ResourceKey.create(Registries.DIMENSION,
             HYEng.makeRL((DIM_NAME + "_level")));
-    public static final ResourceKey<DimensionType> DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
+    public final static ResourceKey<DimensionType> DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
             HYEng.makeRL((DIM_NAME + "_type")));
 
     public static void onServerStarting(RegisterEvent event) {

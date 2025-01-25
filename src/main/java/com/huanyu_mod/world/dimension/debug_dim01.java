@@ -25,14 +25,14 @@ import java.util.Optional;
 import java.util.OptionalLong;
 
 public class debug_dim01 {
-    public static final String CLASS_NAME = HYEng.getCurrentClassName();
-    public static final ResourceKey<LevelStem> LEVEL_STEM_RESOURCE_KEY = ResourceKey.create(Registries.LEVEL_STEM,
+    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static ResourceKey<LevelStem> LEVEL_STEM_RESOURCE_KEY = ResourceKey.create(Registries.LEVEL_STEM,
             HYEng.makeRL(CLASS_NAME));
-    public static final ResourceKey<Level> LEVEL_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION,
+    public final static ResourceKey<Level> LEVEL_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION,
             HYEng.makeRL((CLASS_NAME + "_level")));
-    public static final ResourceKey<DimensionType> DIMENSION_TYPE_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION_TYPE,
+    public final static ResourceKey<DimensionType> DIMENSION_TYPE_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION_TYPE,
             HYEng.makeRL((CLASS_NAME + "_type")));
-    public static final DimensionType DE_DIMENSION_TYPE = new DimensionType(
+    public final static DimensionType DE_DIMENSION_TYPE = new DimensionType(
             OptionalLong.of(6101),
             false,
             false,
@@ -49,7 +49,7 @@ public class debug_dim01 {
             1.0f,
             new DimensionType.MonsterSettings(true, false, ConstantInt.of(0), 0)
     );
-    public static final List<FlatLayerInfo> FLAT_LAYER_INFOS = List.of(
+    public final static List<FlatLayerInfo> FLAT_LAYER_INFOS = List.of(
             new FlatLayerInfo(1, Blocks.BEDROCK)
     );
 

@@ -16,15 +16,15 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 public class HYBlocks {
-    private static final String CLASS_NAME = HYEng.getCurrentClassName();
-    public static final DeferredRegister.Blocks DR = DeferredRegister.createBlocks(HYEng.MOD_ID);
+    private final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static DeferredRegister.Blocks DR = DeferredRegister.createBlocks(HYEng.MOD_ID);
 
     //DeferredBlock Underneath
-    public static final DeferredBlock<Block> DIMENSION_EDITOR = registerBlock(
-            "dimension_editor", dimension_editor::new, dimension_editor.itemProperties());
-    public static final DeferredBlock<Block> DEBUG_BLOCK00 = registerBlock(
+    public final static DeferredBlock<dimension_editor> DIMENSION_EDITOR = registerBlock(
+            "dimension_editor", dimension_editor::new, dimension_editor.ITEM_PROPERTIES);
+    public final static DeferredBlock<debug_block00> DEBUG_BLOCK00 = registerBlock(
             "debug_block00", debug_block00::new, debug_block00.itemProperties());
-    public static final DeferredBlock<Block> DEBUG_BLOCK01 = registerBlock(
+    public final static DeferredBlock<Block> DEBUG_BLOCK01 = registerBlock(
             "debug_block01",
             () -> new Block(BlockBehaviour.Properties.of()
                     .sound(SoundType.AMETHYST)
@@ -34,7 +34,7 @@ public class HYBlocks {
             ),
             new Item.Properties()
     );
-    public static final DeferredBlock<Block> DEBUG_BLOCK02 = registerBlock(
+    public final static DeferredBlock<debug_block02> DEBUG_BLOCK02 = registerBlock(
             "debug_block02", debug_block02::new, debug_block02.itemProperties());
 
 

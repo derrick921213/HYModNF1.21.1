@@ -16,7 +16,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = HYEng.MOD_ID)
 public class HYProcedures {
-    public static final String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = HYEng.getCurrentClassName();
     @SubscribeEvent
     public static void onLevelTick(LevelTickEvent.Post event) {}
     @SubscribeEvent
@@ -28,11 +28,8 @@ public class HYProcedures {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-            CompoundTag nbt = serverPlayer.getPersistentData();
-            if (!nbt.contains("hyd", CompoundTag.TAG_COMPOUND)) nbt.put("hyd", new CompoundTag());
-            nbt = nbt.getCompound("hyd");
-            fly.tick(serverPlayer, nbt);
-            test.tick(serverPlayer, nbt);
+            fly.tick(serverPlayer);
+            test.tick(serverPlayer);
         }
     }
 }

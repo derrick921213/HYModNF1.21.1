@@ -17,7 +17,7 @@ public class dimension extends DatapackBuiltinEntriesProvider {
         super(output, registries, BUILDER, Set.of(HYEng.MOD_ID));
     }
 
-    public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+    public final static RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             /*
             .add(Registries.DIMENSION_TYPE, debug_dim00::setDimensionType)
             .add(Registries.LEVEL_STEM, debug_dim00::setLevelStem)

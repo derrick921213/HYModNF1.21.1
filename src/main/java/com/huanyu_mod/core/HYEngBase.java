@@ -27,6 +27,7 @@ public abstract class HYEngBase implements HYEng{
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         HYItems.register(modEventBus);
+        HYBlockEntities.register(modEventBus);
         HYBlocks.register(modEventBus);
         modEventBus.addListener(HYTabs::addCreative);
         HYTabs.register(modEventBus);
