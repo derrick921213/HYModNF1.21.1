@@ -1,8 +1,11 @@
-package com.huanyu_mod.procedure;
+package com.huanyu_mod.command;
 
+import com.huanyu_mod.core.HYEng;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.DimensionArgument;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
@@ -13,14 +16,42 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
 
-public class dimensionTeleport {
-    public static void execute(CommandContext<CommandSourceStack> context)  {
+public class dim_teleport {
+    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+
+    public static LiteralArgumentBuilder<CommandSourceStack> register() { return Commands.literal("dimTp")
+            .then(Commands.argument("dimension", DimensionArgument.dimension())
+                    .executes(arguments -> {
+                        execute(arguments);
+                        return 0;
+                    }).then(Commands.argument("position", BlockPosArgument.blockPos())
+                            .executes(arguments -> {
+                                execute(arguments);
+                                return 0;
+                            })
+                    )
+            ).then(Commands.argument("players", EntityArgument.players())
+                    .then(Commands.argument("dimension", DimensionArgument.dimension())
+                            .executes(arguments -> {
+                                execute(arguments);
+                                return 0;
+                            }).then(Commands.argument("position", BlockPosArgument.blockPos())
+                                    .executes(arguments -> {
+                                        execute(arguments);
+                                        return 0;
+                                    })
+                            )
+                    )
+            );
+    }
+
+    private static void execute(CommandContext<CommandSourceStack> context)  {
         try {
-            Level world = context.getSource().getUnsidedLevel();
+            Level level = context.getSource().getUnsidedLevel();
             ServerPlayer executePlayer = context.getSource().getPlayer();
             if (!(executePlayer instanceof ServerPlayer)) {
-                if (world instanceof ServerLevel _servLevel) {
-                    executePlayer = FakePlayerFactory.getMinecraft(_servLevel);
+                if (level instanceof ServerLevel _serverLevel) {
+                    executePlayer = FakePlayerFactory.getMinecraft(_serverLevel);
                 } else return;
             }
             ServerLevel targetLevel;
@@ -57,10 +88,8 @@ public class dimensionTeleport {
             } else {
                 executePlayer.teleportTo(targetLevel, x, y, z, yRot, xRot);
             }
-            return;
         } catch (CommandSyntaxException e) {
             //proceduresLOGGER.log(java.util.logging.Level.SEVERE, "An error occurred at ", e);
-            return;
         }
     }
 }

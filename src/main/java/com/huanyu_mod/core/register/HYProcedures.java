@@ -2,12 +2,8 @@ package com.huanyu_mod.core.register;
 
 import com.huanyu_mod.core.HYEng;
 import com.huanyu_mod.procedure.*;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.MinecraftServer;
+import com.huanyu_mod.command.*;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.players.PlayerList;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -28,7 +24,7 @@ public class HYProcedures {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-            fly.tick(serverPlayer);
+            fly_trigger.tick(serverPlayer);
             test.tick(serverPlayer);
         }
     }

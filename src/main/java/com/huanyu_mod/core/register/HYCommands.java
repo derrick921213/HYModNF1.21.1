@@ -13,8 +13,8 @@ public class HYCommands {
     public static void registerCommand(RegisterCommandsEvent event) {
         event.getDispatcher().register(Commands.literal("/hyc")
                 .then(testCmd.register())
-                .then(dimTpCmd.register())
-                .then(flyCmd.register())
+                .then(dim_teleport.register())
+                .then(fly_trigger.register())
         );
     }
 }

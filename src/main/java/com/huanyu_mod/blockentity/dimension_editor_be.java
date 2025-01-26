@@ -19,13 +19,13 @@ import java.util.function.Supplier;
 
 public class dimension_editor_be extends BlockEntity {
     public final static String CLASS_NAME = HYEng.getCurrentClassName();
-    private final static Supplier<BlockEntityType<?>> BLOCK_ENTITY = HYBlockEntities.DEBUG_BLOCK_00_BE;
+    private final static Supplier<BlockEntityType<dimension_editor_be>> BLOCK_ENTITY = HYBlockEntities.DIMENSION_EDITOR_BE;
     private String string;
     private UUID uuid;
     public dimension_editor_be(BlockPos blockPos, BlockState blockState) {
         super(BLOCK_ENTITY.get(), blockPos, blockState);
-        this.string = "INIT";
-        this.uuid = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        string = "INIT";
+        uuid = UUID.fromString("00000000-0000-0000-0000-000000000000");
     }
 
     @Override
@@ -68,18 +68,19 @@ public class dimension_editor_be extends BlockEntity {
     @Override
     public void setChanged() {
         super.setChanged();
-        if (this.level != null)
+        if (this.level != null) {
             this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
+        }
     }
 
     public String getString() {
-        return string;
+        return this.string;
     }
     public void setString(String string) {
         this.string = string;
     }
     public UUID getUuid() {
-        return uuid;
+        return this.uuid;
     }
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
