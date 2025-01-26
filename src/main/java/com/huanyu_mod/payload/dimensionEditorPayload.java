@@ -14,7 +14,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public record dimensionEditorPayload(BlockPos blockPos, String _type, String string0, String string1, String string2) implements CustomPacketPayload {
     public final static String CLASS_NAME = HYEng.getCurrentClassName();
@@ -68,15 +67,15 @@ public record dimensionEditorPayload(BlockPos blockPos, String _type, String str
             else return;
             switch (_type) {
                 case "close":
-                    blockEntity.writeString(string0);
-                    blockEntity.writeUuid(player.getUUID());
+                    blockEntity.setString(string0);
+                    blockEntity.setUuid(player.getUUID());
                     break;
                 case "button":
                     switch (string0) {
                         case "0":
                             break;
                         case "1":
-                            test.executeU(level, blockPos, player);
+                            test.executeBlock(level, blockPos, player);
                             break;
                         case "2":
                             break;

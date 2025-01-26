@@ -19,8 +19,6 @@ import net.minecraft.world.level.storage.LevelResource;
 import java.nio.file.Path;
 import java.util.Map;
 
-import appeng.api.stacks.AEKeyTypes;
-
 public class test {
     public final static String CLASS_NAME = HYEng.getCurrentClassName();
     public static void tick(ServerPlayer serverPlayer) {
@@ -28,7 +26,7 @@ public class test {
         if (!nbt.contains("hyd", CompoundTag.TAG_COMPOUND)) nbt.put("hyd", new CompoundTag());
         nbt = nbt.getCompound("hyd");
     }
-    public static void executeU(Level level, BlockPos blockPos, Player player) {
+    public static void executeBlock(Level level, BlockPos blockPos, Player player) {
         System.out.println(CLASS_NAME + " Output: " + level);
         System.out.println(CLASS_NAME + " Output: " + blockPos);
         System.out.println(CLASS_NAME + " Output: " + player.getClass());
@@ -39,19 +37,18 @@ public class test {
         Path dataPackPath = HYEng.instance().getServer().getWorldPath(LevelResource.DATAPACK_DIR);
         System.out.println(CLASS_NAME + " Output: " + dataPackPath.toAbsolutePath());
     }
-    public static void executeA(CommandContext<CommandSourceStack> context) {
+    public static void executeCmd(CommandContext<CommandSourceStack> context) {
         MinecraftServer server = context.getSource().getServer();
-
         HYDimensions.register(server);
 
-        Registry<DimensionType> dimensionTypeRegistry =
+        /*Registry<DimensionType> dimensionTypeRegistry =
                 server.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE);
         for (Map.Entry<ResourceKey<DimensionType>, DimensionType> dimensionEntry : dimensionTypeRegistry.entrySet()) {
             System.out.println(CLASS_NAME + " Dimension Key Found: " + dimensionEntry.getKey().location());
         }
         for (ServerLevel level : server.getAllLevels()) {
             System.out.println(CLASS_NAME + " Loaded Dimension: " + level.dimension().location());
-        }
+        }*/
     }
     private static void temp() {
         /*PacketDistributor.sendToServer(new MyData0("Joe"));

@@ -30,9 +30,9 @@ public class debug_dim02 {
     public final static ResourceKey<LevelStem> LEVEL_STEM_RESOURCE_KEY = ResourceKey.create(Registries.LEVEL_STEM,
             HYEng.makeRL(CLASS_NAME));
     public final static ResourceKey<Level> LEVEL_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION,
-            HYEng.makeRL((CLASS_NAME + "_level")));
+            HYEng.makeRL(CLASS_NAME + "_level"));
     public final static ResourceKey<DimensionType> DIMENSION_TYPE_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION_TYPE,
-            HYEng.makeRL((CLASS_NAME + "_type")));
+            HYEng.makeRL(CLASS_NAME + "_type"));
     public final static DimensionType DE_DIMENSION_TYPE = new DimensionType(
             OptionalLong.of(6102),
             false,
@@ -69,6 +69,7 @@ public class debug_dim02 {
         FlatLevelGeneratorSettings flatSettings = new FlatLevelGeneratorSettings(Optional.empty(), biomeHolder, List.of());
         flatSettings = flatSettings.withBiomeAndLayers(FLAT_LAYER_INFOS, structures, biomeHolder);
         FlatLevelSource flatChunkGenerator = new FlatLevelSource(flatSettings);
+
         context.register(LEVEL_STEM_RESOURCE_KEY, new LevelStem(
                 dimensionTypeHG.getOrThrow(debug_dim00.DIMENSION_TYPE_RESOURCE_KEY),
                 flatChunkGenerator

@@ -20,11 +20,12 @@ public class HYBlocks {
     public final static DeferredRegister.Blocks DR = DeferredRegister.createBlocks(HYEng.MOD_ID);
 
     //DeferredBlock Underneath
-    public final static DeferredBlock<dimension_editor> DIMENSION_EDITOR = registerBlock(
+    public final static DeferredBlock<?> DIMENSION_EDITOR = registerBlock(
             "dimension_editor", dimension_editor::new, dimension_editor.ITEM_PROPERTIES);
-    public final static DeferredBlock<debug_block00> DEBUG_BLOCK00 = registerBlock(
-            "debug_block00", debug_block00::new, debug_block00.itemProperties());
-    public final static DeferredBlock<Block> DEBUG_BLOCK01 = registerBlock(
+
+    public final static DeferredBlock<?> DEBUG_BLOCK00 = registerBlock(
+            "debug_block00", debug_block00::new, debug_block00.ITEM_PROPERTIES);
+    public final static DeferredBlock<?> DEBUG_BLOCK01 = registerBlock(
             "debug_block01",
             () -> new Block(BlockBehaviour.Properties.of()
                     .sound(SoundType.AMETHYST)
@@ -34,7 +35,7 @@ public class HYBlocks {
             ),
             new Item.Properties()
     );
-    public final static DeferredBlock<debug_block02> DEBUG_BLOCK02 = registerBlock(
+    public final static DeferredBlock<?> DEBUG_BLOCK02 = registerBlock(
             "debug_block02", debug_block02::new, debug_block02.itemProperties());
 
 

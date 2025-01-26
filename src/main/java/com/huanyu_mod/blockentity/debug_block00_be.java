@@ -17,29 +17,42 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-public class dimension_editor_be extends BlockEntity {
+public class debug_block00_be extends BlockEntity {
     public final static String CLASS_NAME = HYEng.getCurrentClassName();
     private final static Supplier<BlockEntityType<?>> BLOCK_ENTITY = HYBlockEntities.DEBUG_BLOCK_00_BE;
     private String string;
-    private UUID uuid;
-    public dimension_editor_be(BlockPos blockPos, BlockState blockState) {
+    //protected final ContainerData data;
+    public debug_block00_be(BlockPos blockPos, BlockState blockState) {
         super(BLOCK_ENTITY.get(), blockPos, blockState);
         this.string = "INIT";
-        this.uuid = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        /*this.data = new ContainerData() {
+            @Override
+            public int get(int i) {
+                return 0;
+            }
+
+            @Override
+            public void set(int i, int i1) {
+                debug_block00_be.this.test = 66;
+            }
+
+            @Override
+            public int getCount() {
+                return 0;
+            }
+        };*/
     }
 
     @Override
     protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider lookupProvider) {
         super.loadAdditional(compoundTag, lookupProvider);
         this.string = compoundTag.getString("stringT");
-        this.uuid = compoundTag.getUUID("uuid");
     }
 
     @Override
     public void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider lookupProvider) {
         super.saveAdditional(compoundTag, lookupProvider);
         compoundTag.putString("stringT", this.string);
-        compoundTag.putUUID("uuid", this.uuid);
     }
 
     @NotNull
@@ -77,11 +90,5 @@ public class dimension_editor_be extends BlockEntity {
     }
     public void setString(String string) {
         this.string = string;
-    }
-    public UUID getUuid() {
-        return uuid;
-    }
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 }

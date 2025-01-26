@@ -9,7 +9,7 @@ public class testCmd {
     public static LiteralArgumentBuilder<CommandSourceStack> register() {
         return Commands.literal("test")
                 .executes(arguments -> {
-                    test.executeA(arguments);
+                    test.executeCmd(arguments);
                     return 0;
                 });
     }

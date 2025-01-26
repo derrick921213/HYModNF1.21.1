@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class dimension_editor extends Block implements EntityBlock{
+public class dimension_editor extends Block implements EntityBlock {
     public final static String CLASS_NAME = HYEng.getCurrentClassName();
     public final static Item.Properties ITEM_PROPERTIES = new Item.Properties().rarity(Rarity.EPIC);
     private final static DirectionProperty FACING = DirectionalBlock.FACING;
@@ -48,12 +48,7 @@ public class dimension_editor extends Block implements EntityBlock{
         );
     }
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new dimension_editor_be(blockPos, blockState);
-    }
-
+    /* Block State */
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(FACING)) {
@@ -65,7 +60,6 @@ public class dimension_editor extends Block implements EntityBlock{
             case WEST -> box(4, 0, 0, 16, 16, 16);
         };
     }
-
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -84,6 +78,12 @@ public class dimension_editor extends Block implements EntityBlock{
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
+    /* Block Entity */
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new dimension_editor_be(blockPos, blockState);
+    }
     @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
         super.onPlace(state, level, pos, oldState, movedByPiston);
