@@ -63,14 +63,6 @@ public class debug_block00 extends Block implements EntityBlock {
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new debug_block00_be(blockPos, blockState);
     }
-    @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        if (level.getBlockEntity(pos) instanceof debug_block00_be blockEntity) {
-            blockEntity.getManagedNode().destroy();
-        }
-        super.onRemove(state, level, pos, newState, movedByPiston);
-    }
-
 
     @NotNull
     @Override
@@ -78,7 +70,6 @@ public class debug_block00 extends Block implements EntityBlock {
         if (!level.isClientSide) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof debug_block00_be customEntity) {
-                // 與 GridNode 進行互動
                 IManagedGridNode node = customEntity.getManagedNode();
                 if (node != null) {
                     System.out.println(CLASS_NAME + " O: " + node);

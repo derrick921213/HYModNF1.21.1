@@ -29,9 +29,9 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
     private final Set<Direction> direction = Set.of(Direction.values());
     private final IManagedGridNode MANAGED_NODE = createManagedNode()
             .setExposedOnSides(direction)
-            .setInWorldNode(true)
-            .setIdlePowerUsage(0.87)
-            .setGridColor(AEColor.GREEN);
+            .setInWorldNode(true);
+            //.setIdlePowerUsage(0.87)
+            //.setGridColor(AEColor.GREEN);
 
     //protected final ContainerData data;
     public debug_block00_be(BlockPos blockPos, BlockState blockState) {
@@ -62,6 +62,42 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
 
     public IManagedGridNode getManagedNode() {
         return this.MANAGED_NODE;
+    }
+
+    private void nodeCreate() {
+        if (!getManagedNode().isReady()) {
+            getManagedNode().create(getLevel(), getBlockPos());
+        }
+    }
+
+    private void nodeDestroy() {
+        if (getManagedNode().isReady()) {
+            getManagedNode().destroy();
+        }
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        nodeCreate();
+    }
+
+    @Override
+    public void onChunkUnloaded() {
+        super.onChunkUnloaded();
+        nodeDestroy();
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        nodeDestroy();
+    }
+
+    @Override
+    public void clearRemoved() {
+        super.clearRemoved();
+        GridHelper.onFirstTick(this, debug_block00_be::nodeCreate);
     }
 
     @Override
@@ -107,40 +143,6 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
         if (this.level != null) {
             this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
         }
-    }
-
-    private void nodeCreate() {
-        if (!this.MANAGED_NODE.isReady()) {
-            this.MANAGED_NODE.create(this.getLevel(), this.getBlockPos());
-        }
-    }
-
-    private void nodeDestroy() {
-        this.getManagedNode().destroy();
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        nodeCreate();
-    }
-
-    @Override
-    public void clearRemoved() {
-        super.clearRemoved();
-        GridHelper.onFirstTick(this, debug_block00_be::nodeCreate);
-    }
-
-    @Override
-    public void onChunkUnloaded() {
-        super.onChunkUnloaded();
-        nodeDestroy();
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        nodeDestroy();
     }
 
     @Override
