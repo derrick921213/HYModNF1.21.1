@@ -33,7 +33,7 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
     private final IManagedGridNode MANAGED_NODE = GridHelper.createManagedNode(this, this)
             .setVisualRepresentation(new ItemStack(HYBlocks.DEBUG_BLOCK00))
             .setFlags(GridFlags.DENSE_CAPACITY)
-            .setIdlePowerUsage(0.87)
+            .setIdlePowerUsage(0.88)
             .setExposedOnSides(direction)
             .setInWorldNode(true);
 
