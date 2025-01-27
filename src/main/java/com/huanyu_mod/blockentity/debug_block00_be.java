@@ -5,6 +5,7 @@ import appeng.api.networking.security.IActionHost;
 import appeng.api.util.AEColor;
 import com.huanyu_mod.core.HYEng;
 import com.huanyu_mod.core.register.HYBlockEntities;
+import com.huanyu_mod.core.register.HYBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -13,6 +14,8 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,11 +30,12 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
     private final static Supplier<BlockEntityType<debug_block00_be>> BLOCK_ENTITY = HYBlockEntities.DEBUG_BLOCK_00_BE;
     private String string;
     private final Set<Direction> direction = Set.of(Direction.values());
-    private final IManagedGridNode MANAGED_NODE = createManagedNode()
+    private final IManagedGridNode MANAGED_NODE = GridHelper.createManagedNode(this, this)
+            .setVisualRepresentation(new ItemStack(HYBlocks.DEBUG_BLOCK00))
+            .setFlags(GridFlags.DENSE_CAPACITY)
+            .setIdlePowerUsage(0.87)
             .setExposedOnSides(direction)
             .setInWorldNode(true);
-            //.setIdlePowerUsage(0.87)
-            //.setGridColor(AEColor.GREEN);
 
     //protected final ContainerData data;
     public debug_block00_be(BlockPos blockPos, BlockState blockState) {
@@ -56,50 +60,6 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
         };*/
     }
 
-    protected IManagedGridNode createManagedNode() {
-        return GridHelper.createManagedNode(this, this);
-    }
-
-    public IManagedGridNode getManagedNode() {
-        return this.MANAGED_NODE;
-    }
-
-    private void nodeCreate() {
-        if (!getManagedNode().isReady()) {
-            getManagedNode().create(getLevel(), getBlockPos());
-        }
-    }
-
-    private void nodeDestroy() {
-        if (getManagedNode().isReady()) {
-            getManagedNode().destroy();
-        }
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        nodeCreate();
-    }
-
-    @Override
-    public void onChunkUnloaded() {
-        super.onChunkUnloaded();
-        nodeDestroy();
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        nodeDestroy();
-    }
-
-    @Override
-    public void clearRemoved() {
-        super.clearRemoved();
-        GridHelper.onFirstTick(this, debug_block00_be::nodeCreate);
-    }
-
     @Override
     protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider lookupProvider) {
         super.loadAdditional(compoundTag, lookupProvider);
@@ -108,7 +68,7 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
     }
 
     @Override
-    public void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider lookupProvider) {
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider lookupProvider) {
         super.saveAdditional(compoundTag, lookupProvider);
         compoundTag.putString("stringT", this.string);
         //this.getManagedNode().saveToNBT(compoundTag);
@@ -145,6 +105,40 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
         }
     }
 
+    public void nodeCreate() {
+        if (!this.MANAGED_NODE.isReady()) {
+            HYEng.sysOut(CLASS_NAME, "create");
+            GridHelper.onFirstTick(this, debug_block00_be::onFirstTick);
+        }
+    }
+
+    private void onFirstTick() {
+        this.MANAGED_NODE.create(this.getLevel(), this.getBlockPos());
+    }
+
+    public void nodeDestroy() {
+        HYEng.sysOut(CLASS_NAME, "destory");
+        this.MANAGED_NODE.destroy();
+    }
+
+    @Override
+    public void onChunkUnloaded() {
+        super.onChunkUnloaded();
+        nodeDestroy();
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        nodeDestroy();
+    }
+
+    @Override
+    public void clearRemoved() {
+        super.clearRemoved();
+        GridHelper.onFirstTick(this, debug_block00_be::nodeCreate);
+    }
+
     @Override
     public void onSaveChanges(debug_block00_be nodeOwner, IGridNode node) {
         nodeOwner.setChanged();
@@ -153,18 +147,17 @@ public class debug_block00_be extends BlockEntity implements IActionHost, IInWor
     @Nullable
     @Override
     public IGridNode getGridNode(Direction dir) {
-        var node = this.getManagedNode().getNode();
+        var node = this.MANAGED_NODE.getNode();
         return node;
-        // We use the node rather than getGridConnectableSides since the node is already using absolute sides
-        /*if (node.isExposedOnSide(dir)) {
-            return node;
-        }
-        return null;*/
     }
 
     @Nullable
     @Override
     public IGridNode getActionableNode() {
-        return this.getManagedNode().getNode();
+        return this.MANAGED_NODE.getNode();
+    }
+
+    public IManagedGridNode getManagedNode() {
+        return this.MANAGED_NODE;
     }
 }

@@ -15,16 +15,24 @@ public interface HYEng {
     String MOD_NAME = "HuanYu Mod";
     String MOD_AUTHER = "HuanYu_";
     Logger LOGGER = LogUtils.getLogger();
+
     static HYEng instance() {
         return HYEngBase.INSTANCE;
     }
+
     static String getCurrentClassName() {
         return Thread.currentThread().getStackTrace()[2].getClassName()
                 .substring(Thread.currentThread().getStackTrace()[2].getClassName().lastIndexOf('.') + 1);
     }
+
+    static void sysOut(String name, String string) {
+        System.out.println(name + " O: " + string);
+    }
+
     static ResourceLocation makeRL(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
+
     Collection<ServerPlayer> getPlayers();
 
     @Nullable
@@ -32,4 +40,6 @@ public interface HYEng {
 
     @Nullable
     MinecraftServer getServer();
+
+
 }

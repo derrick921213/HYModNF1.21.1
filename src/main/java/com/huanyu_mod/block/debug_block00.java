@@ -1,6 +1,5 @@
 package com.huanyu_mod.block;
 
-import appeng.api.networking.IManagedGridNode;
 import com.huanyu_mod.blockentity.debug_block00_be;
 import com.huanyu_mod.core.HYEng;
 import net.minecraft.core.BlockPos;
@@ -45,42 +44,35 @@ public class debug_block00 extends Block implements EntityBlock {
         builder.add(FACING);
     }
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         return Objects.requireNonNull(super.getStateForPlacement(context)).setValue(FACING, context.getClickedFace());
     }
     @NotNull
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    public BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
     @NotNull
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+    public BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
+        return this.rotate(state, mirror.getRotation(state.getValue(FACING)));
+        //return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     /* Block Entity */
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return new debug_block00_be(blockPos, blockState);
     }
 
     @NotNull
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if (!level.isClientSide) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof debug_block00_be customEntity) {
-                IManagedGridNode node = customEntity.getManagedNode();
-                if (node != null) {
-                    System.out.println(CLASS_NAME + " O: " + node);
-                    System.out.println(CLASS_NAME + " O1: " + node.isReady());
-                    System.out.println(CLASS_NAME + " O2: " + node.isActive());
-                    System.out.println(CLASS_NAME + " O3: " + node.isOnline());
-                    System.out.println(CLASS_NAME + " O4: " + node.isPowered());
-                    System.out.println(CLASS_NAME + " O5: " + node.hasGridBooted());
-                    System.out.println(CLASS_NAME + " O1: " + node.getGrid());
-                    System.out.println(CLASS_NAME + " O2: " + node.getNode());
-                }
+                /*customEntity.nodeDestroy();
+                customEntity.nodeCreate();*/
+                System.out.println(CLASS_NAME + " O: " + customEntity.getManagedNode());
             }
         }
         return InteractionResult.SUCCESS;
