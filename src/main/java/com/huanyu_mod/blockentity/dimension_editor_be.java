@@ -1,6 +1,6 @@
 package com.huanyu_mod.blockentity;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.core.register.HYBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -9,6 +9,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,7 +19,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public class dimension_editor_be extends BlockEntity {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
     private final static Supplier<BlockEntityType<dimension_editor_be>> BLOCK_ENTITY = HYBlockEntities.DIMENSION_EDITOR_BE;
     private String string;
     private UUID uuid;
@@ -69,7 +70,7 @@ public class dimension_editor_be extends BlockEntity {
     public void setChanged() {
         super.setChanged();
         if (this.level != null) {
-            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
+            this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
         }
     }
 

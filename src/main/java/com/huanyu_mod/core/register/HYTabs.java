@@ -1,10 +1,9 @@
 package com.huanyu_mod.core.register;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,9 +14,9 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 public class HYTabs {
-    private final static String CLASS_NAME = HYEng.getCurrentClassName();
+    private final static String CLASS_NAME = IHYEng.getCurrentClassName();
     public final static DeferredRegister<CreativeModeTab> DR =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HYEng.MOD_ID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IHYEng.MOD_ID);
 
     //DeferredCreativeModeTab Underneath
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -43,7 +42,7 @@ public class HYTabs {
     public final static Supplier<CreativeModeTab> DEBUG_TAB01 = DR.register(
             "huanyu_tab",
             () -> CreativeModeTab.builder()
-                    .withTabsBefore(HYEng.makeRL("debug_tab00"))
+                    .withTabsBefore(IHYEng.makeRL("debug_tab00"))
                     .title(Component.translatable("creative_tab.huanyu_mod.huanyu_tab"))
                     .icon(() -> new ItemStack(Blocks.BEACON))
                     .displayItems((parameters, output) -> {

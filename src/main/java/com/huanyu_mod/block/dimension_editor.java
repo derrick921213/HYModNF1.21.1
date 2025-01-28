@@ -1,7 +1,7 @@
 package com.huanyu_mod.block;
 
 import com.huanyu_mod.blockentity.dimension_editor_be;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.world.menu.dimensionEditorGuiMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class dimension_editor extends Block implements EntityBlock {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
     public final static Item.Properties ITEM_PROPERTIES = new Item.Properties().rarity(Rarity.EPIC);
     private final static DirectionProperty FACING = DirectionalBlock.FACING;
     public dimension_editor() {

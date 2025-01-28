@@ -1,6 +1,6 @@
 package com.huanyu_mod.procedure;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
@@ -14,13 +14,13 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import java.util.OptionalLong;
 
 public class mymod {
-    public final static String DIM_NAME = HYEng.getCurrentClassName();
+    public final static String DIM_NAME = IHYEng.getCurrentClassName();
     public final static ResourceKey<LevelStem> LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM,
-            HYEng.makeRL(DIM_NAME));
+            IHYEng.makeRL(DIM_NAME));
     public final static ResourceKey<Level> DIMENSION_LEVEL = ResourceKey.create(Registries.DIMENSION,
-            HYEng.makeRL((DIM_NAME + "_level")));
+            IHYEng.makeRL((DIM_NAME + "_level")));
     public final static ResourceKey<DimensionType> DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
-            HYEng.makeRL((DIM_NAME + "_type")));
+            IHYEng.makeRL((DIM_NAME + "_type")));
 
     public static void onServerStarting(RegisterEvent event) {
         DimensionType customDimensionType = new DimensionType(
@@ -43,7 +43,7 @@ public class mymod {
 
         if (event.getRegistryKey() == Registries.DIMENSION_TYPE) {
             event.register(Registries.DIMENSION_TYPE, helper -> {helper.register(
-                    HYEng.makeRL("custom_dimension_type"), customDimensionType);
+                    IHYEng.makeRL("custom_dimension_type"), customDimensionType);
             });
             System.out.println(mymod.class.getName() + " Output: Generate Success");
         }

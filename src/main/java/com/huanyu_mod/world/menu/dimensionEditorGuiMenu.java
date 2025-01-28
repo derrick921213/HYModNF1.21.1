@@ -1,11 +1,10 @@
 package com.huanyu_mod.world.menu;
 
 import com.huanyu_mod.blockentity.dimension_editor_be;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.core.register.HYMenus;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -14,7 +13,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +22,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class dimensionEditorGuiMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
-	public final static String CLASS_NAME = HYEng.getCurrentClassName();
+	public final static String CLASS_NAME = IHYEng.getCurrentClassName();
 	public final static HashMap<String, Object> GUI_STATE = new HashMap<>();
 	public final Level level;
 	public final Player player;

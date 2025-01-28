@@ -1,6 +1,6 @@
 package com.huanyu_mod.core.register;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.world.dimension.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
@@ -18,9 +18,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.*;
 
 public class HYDimensions {
-    private final static String CLASS_NAME = HYEng.getCurrentClassName();
+    private final static String CLASS_NAME = IHYEng.getCurrentClassName();
     public final static DeferredRegister<DimensionType> DR_TYPE =
-            DeferredRegister.create(Registries.DIMENSION_TYPE, HYEng.MOD_ID);
+            DeferredRegister.create(Registries.DIMENSION_TYPE, IHYEng.MOD_ID);
 
     public final static DeferredHolder<DimensionType, DimensionType> DEBUG_DIM02 =
             DR_TYPE.register("debug_dim02", () -> debug_dim02.DE_DIMENSION_TYPE);
@@ -34,7 +34,7 @@ public class HYDimensions {
 
     public static Collection<DeferredHolder<DimensionType, ? extends DimensionType>> register(MinecraftServer server) {
         Registry<DimensionType> dimensionTypeRegistry = server.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE);
-        ResourceLocation debugDimensionId = HYEng.makeRL("debug_dim02");
+        ResourceLocation debugDimensionId = IHYEng.makeRL("debug_dim02");
         DimensionType debugDimensionType = debug_dim02.DE_DIMENSION_TYPE;
 
         if (dimensionTypeRegistry.containsKey(debugDimensionId)) {

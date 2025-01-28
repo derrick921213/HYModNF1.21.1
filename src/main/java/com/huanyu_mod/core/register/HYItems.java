@@ -1,6 +1,6 @@
 package com.huanyu_mod.core.register;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.item.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -11,8 +11,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.Collection;
 
 public class HYItems {
-    private final static String CLASS_NAME = HYEng.getCurrentClassName();
-    public final static DeferredRegister.Items DR = DeferredRegister.createItems(HYEng.MOD_ID);
+    private final static String CLASS_NAME = IHYEng.getCurrentClassName();
+    public final static DeferredRegister.Items DR = DeferredRegister.createItems(IHYEng.MOD_ID);
 
     //DeferredItem Underneath
     public final static DeferredItem<debug_item00> DEBUG_ITEM00 = DR.register("debug_item00", debug_item00::new);

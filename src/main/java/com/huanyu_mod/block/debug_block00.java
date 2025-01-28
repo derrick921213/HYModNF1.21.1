@@ -1,7 +1,8 @@
 package com.huanyu_mod.block;
 
+import appeng.api.networking.IManagedGridNode;
 import com.huanyu_mod.blockentity.debug_block00_be;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class debug_block00 extends Block implements EntityBlock {
-    private final static String CLASS_NAME = HYEng.getCurrentClassName();
+    private final static String CLASS_NAME = IHYEng.getCurrentClassName();
     public final static Item.Properties ITEM_PROPERTIES = new Item.Properties().rarity(Rarity.EPIC);
     public final static DirectionProperty FACING = DirectionalBlock.FACING;
     public debug_block00() {
@@ -66,13 +67,13 @@ public class debug_block00 extends Block implements EntityBlock {
 
     @NotNull
     @Override
-    protected InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+    protected InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos blockPos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if (!level.isClientSide) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
+            BlockEntity blockEntity = level.getBlockEntity(blockPos);
             if (blockEntity instanceof debug_block00_be customEntity) {
-                /*customEntity.nodeDestroy();
-                customEntity.nodeCreate();*/
-                System.out.println(CLASS_NAME + " O: " + customEntity.getManagedNode());
+                IManagedGridNode node = customEntity.getMainNode();
+                System.out.println(CLASS_NAME + " O: " + node);
+                System.out.println(CLASS_NAME + " O: " + node.isReady());
             }
         }
         return InteractionResult.SUCCESS;

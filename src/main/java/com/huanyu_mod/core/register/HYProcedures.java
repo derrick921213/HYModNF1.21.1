@@ -1,6 +1,6 @@
 package com.huanyu_mod.core.register;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.procedure.*;
 import com.huanyu_mod.command.*;
 import net.minecraft.server.level.ServerPlayer;
@@ -10,9 +10,9 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-@EventBusSubscriber(modid = HYEng.MOD_ID)
+@EventBusSubscriber(modid = IHYEng.MOD_ID)
 public class HYProcedures {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
     @SubscribeEvent
     public static void onLevelTick(LevelTickEvent.Post event) {}
     @SubscribeEvent

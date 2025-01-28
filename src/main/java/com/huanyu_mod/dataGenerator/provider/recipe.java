@@ -1,6 +1,6 @@
 package com.huanyu_mod.dataGenerator.provider;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.core.register.HYBlocks;
 import com.huanyu_mod.core.register.HYItems;
 import net.minecraft.core.HolderLookup;
@@ -22,9 +22,9 @@ public class recipe extends RecipeProvider implements IConditionBuilder {
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         TagKey<Item> tag_debug_item = TagKey.create(Registries.ITEM,
-                HYEng.makeRL("debug_item"));
+                IHYEng.makeRL("debug_item"));
         TagKey<Item> tag_debug_block = TagKey.create(Registries.ITEM,
-                HYEng.makeRL("debug_block"));
+                IHYEng.makeRL("debug_block"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HYBlocks.DEBUG_BLOCK00.get())
                 .pattern("###")
@@ -32,17 +32,17 @@ public class recipe extends RecipeProvider implements IConditionBuilder {
                 .pattern("###")
                 .define('#', tag_debug_item)
                 .unlockedBy("has_debug_item", has(tag_debug_item))
-                .save(recipeOutput, HYEng.makeRL("debug_block00_0"));
+                .save(recipeOutput, IHYEng.makeRL("debug_block00_0"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HYItems.DEBUG_ITEM00.get(), 9)
                 .requires(tag_debug_block)
                 .unlockedBy("has_debug_item", has(tag_debug_block))
-                .save(recipeOutput, HYEng.makeRL("debug_item00_0"));
+                .save(recipeOutput, IHYEng.makeRL("debug_item00_0"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HYItems.DEBUG_ITEM00.get(), 1)
                 .requires(HYItems.DEBUG_ITEM01.get())
                 .unlockedBy("has_debug_item", has(HYItems.DEBUG_ITEM00))
-                .save(recipeOutput, HYEng.makeRL("debug_item00_1"));
+                .save(recipeOutput, IHYEng.makeRL("debug_item00_1"));
         /*
         List<ItemLike> BISMUTH_SMELTABLES = List.of(ModItems.RAW_BISMUTH,
                 ModBlocks.BISMUTH_ORE, ModBlocks.BISMUTH_DEEPSLATE_ORE);

@@ -1,7 +1,7 @@
 package com.huanyu_mod.client.screen;
 
 import com.huanyu_mod.blockentity.dimension_editor_be;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.payload.dimensionEditorPayload;
 import com.huanyu_mod.world.menu.dimensionEditorGuiMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -13,25 +13,23 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
 public class dimensionEditorGuiScreen extends AbstractContainerScreen<dimensionEditorGuiMenu> implements HYScreen{
-	public final static String CLASS_NAME = HYEng.getCurrentClassName();
+	public final static String CLASS_NAME = IHYEng.getCurrentClassName();
 	private final static HashMap<String, Object> GUI_STATE = dimensionEditorGuiMenu.GUI_STATE;
 	public final Level level;
 	public final Player player;
 	public final BlockPos blockPos;
 	public final dimension_editor_be blockEntity;
 
-	private final static ResourceLocation texture = HYEng.makeRL("textures/screens/dimension_editor_gui_bg.png");
+	private final static ResourceLocation texture = IHYEng.makeRL("textures/screens/dimension_editor_gui_bg.png");
 	Button button_time_00;
 	Button button_time_06;
 	Button button_time_12;

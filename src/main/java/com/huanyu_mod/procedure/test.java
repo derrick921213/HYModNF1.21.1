@@ -1,26 +1,21 @@
 package com.huanyu_mod.procedure;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.core.register.HYDimensions;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.storage.LevelResource;
 import java.nio.file.Path;
-import java.util.Map;
 
 public class test {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
     public static void tick(ServerPlayer serverPlayer) {
         CompoundTag nbt = serverPlayer.getPersistentData();
         if (!nbt.contains("hyd", CompoundTag.TAG_COMPOUND)) nbt.put("hyd", new CompoundTag());
@@ -34,7 +29,7 @@ public class test {
             Path dataPackPath = serverLevel.getServer().getWorldPath(LevelResource.DATAPACK_DIR);
             System.out.println(CLASS_NAME + " Output: " + dataPackPath.toAbsolutePath());
         }
-        Path dataPackPath = HYEng.instance().getServer().getWorldPath(LevelResource.DATAPACK_DIR);
+        Path dataPackPath = IHYEng.instance().getServer().getWorldPath(LevelResource.DATAPACK_DIR);
         System.out.println(CLASS_NAME + " Output: " + dataPackPath.toAbsolutePath());
     }
     public static void executeCmd(CommandContext<CommandSourceStack> context) {

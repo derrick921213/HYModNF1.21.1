@@ -1,6 +1,6 @@
 package com.huanyu_mod.command;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
 
 public class dim_teleport {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
 
     public static LiteralArgumentBuilder<CommandSourceStack> register() { return Commands.literal("dimTp")
             .then(Commands.argument("dimension", DimensionArgument.dimension())

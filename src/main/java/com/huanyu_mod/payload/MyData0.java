@@ -1,6 +1,6 @@
 package com.huanyu_mod.payload;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public record MyData0(String name) implements CustomPacketPayload {
     public final static Type<MyData0> TYPE =
-            new Type<>(HYEng.makeRL("my_data0"));
+            new Type<>(IHYEng.makeRL("my_data0"));
     public final static StreamCodec<ByteBuf, MyData0> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.STRING_UTF8,
             MyData0::name,

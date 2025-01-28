@@ -1,7 +1,7 @@
 package com.huanyu_mod.core.register;
 
 import com.huanyu_mod.block.*;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -16,8 +16,8 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 public class HYBlocks {
-    private final static String CLASS_NAME = HYEng.getCurrentClassName();
-    public final static DeferredRegister.Blocks DR = DeferredRegister.createBlocks(HYEng.MOD_ID);
+    private final static String CLASS_NAME = IHYEng.getCurrentClassName();
+    public final static DeferredRegister.Blocks DR = DeferredRegister.createBlocks(IHYEng.MOD_ID);
 
     //DeferredBlock Underneath
     public final static DeferredBlock<?> DIMENSION_EDITOR = registerBlock(

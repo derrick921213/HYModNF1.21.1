@@ -1,7 +1,7 @@
 package com.huanyu_mod.core.register;
 
 import com.huanyu_mod.blockentity.*;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -12,8 +12,8 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 public class HYBlockEntities {
-    private final static String CLASS_NAME = HYEng.getCurrentClassName();
-    public final static DeferredRegister<BlockEntityType<?>> DR = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, HYEng.MOD_ID);
+    private final static String CLASS_NAME = IHYEng.getCurrentClassName();
+    public final static DeferredRegister<BlockEntityType<?>> DR = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, IHYEng.MOD_ID);
 
     public final static Supplier<BlockEntityType<dimension_editor_be>> DIMENSION_EDITOR_BE = DR.register(
             "dimension_editor_be", () -> BlockEntityType.Builder.of(

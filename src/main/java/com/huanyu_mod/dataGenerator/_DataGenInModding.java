@@ -1,6 +1,6 @@
 package com.huanyu_mod.dataGenerator;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.dataGenerator.provider.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = HYEng.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = IHYEng.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class _DataGenInModding {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {

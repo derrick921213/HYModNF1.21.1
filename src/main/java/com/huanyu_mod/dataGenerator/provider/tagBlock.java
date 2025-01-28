@@ -1,6 +1,6 @@
 package com.huanyu_mod.dataGenerator.provider;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.core.register.HYBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class tagBlock extends BlockTagsProvider {
     public tagBlock(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, HYEng.MOD_ID, existingFileHelper);
+        super(output, lookupProvider, IHYEng.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class tagBlock extends BlockTagsProvider {
         /*this.tag(ModTags.Blocks.METAL_DETECTOR_VALUABLES)
                 .add(ModBlocks.SAPPHIRE_ORE.get()).addTag(Tags.Blocks.ORES);*/
 
-        this.tag(BlockTags.create(HYEng.makeRL("debug_block"))).add(
+        this.tag(BlockTags.create(IHYEng.makeRL("debug_block"))).add(
                 HYBlocks.DEBUG_BLOCK00.get(),
                 HYBlocks.DEBUG_BLOCK01.get(),
                 HYBlocks.DEBUG_BLOCK02.get()

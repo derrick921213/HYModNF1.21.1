@@ -1,6 +1,6 @@
 package com.huanyu_mod.world.dimension;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -20,13 +20,13 @@ import java.util.List;
 import java.util.OptionalLong;
 
 public class debug_dim00 {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
     public final static ResourceKey<LevelStem> LEVEL_STEM_RESOURCE_KEY = ResourceKey.create(Registries.LEVEL_STEM,
-            HYEng.makeRL(CLASS_NAME));
+            IHYEng.makeRL(CLASS_NAME));
     public final static ResourceKey<Level> LEVEL_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION,
-            HYEng.makeRL((CLASS_NAME + "_level")));
+            IHYEng.makeRL((CLASS_NAME + "_level")));
     public final static ResourceKey<DimensionType> DIMENSION_TYPE_RESOURCE_KEY = ResourceKey.create(Registries.DIMENSION_TYPE,
-            HYEng.makeRL((CLASS_NAME + "_type")));
+            IHYEng.makeRL((CLASS_NAME + "_type")));
     public final static DimensionType DE_DIMENSION_TYPE = new DimensionType(
             OptionalLong.of(6100),
             false,

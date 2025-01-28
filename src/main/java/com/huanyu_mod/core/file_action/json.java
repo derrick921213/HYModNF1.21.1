@@ -3,7 +3,7 @@ package com.huanyu_mod.core.file_action;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 
@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class json {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
     public static List<String> loadJsonListString(ResourceLocation resourceLocation, String objName, MinecraftServer server) {
         List<String> _return = List.of();
         try {

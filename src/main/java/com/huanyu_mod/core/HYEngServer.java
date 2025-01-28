@@ -6,7 +6,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 
-@Mod(value = HYEng.MOD_ID, dist = Dist.DEDICATED_SERVER)
+@Mod(value = IHYEng.MOD_ID, dist = Dist.DEDICATED_SERVER)
 public class HYEngServer extends HYEngBase{
     public HYEngServer(IEventBus modEventBus, ModContainer modContainer) {
         super(modEventBus, modContainer);

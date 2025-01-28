@@ -10,13 +10,13 @@ import org.slf4j.Logger;
 
 import java.util.Collection;
 
-public interface HYEng {
+public interface IHYEng {
     String MOD_ID = "huanyu_mod";
     String MOD_NAME = "HuanYu Mod";
     String MOD_AUTHER = "HuanYu_";
     Logger LOGGER = LogUtils.getLogger();
 
-    static HYEng instance() {
+    static IHYEng instance() {
         return HYEngBase.INSTANCE;
     }
 
@@ -27,6 +27,14 @@ public interface HYEng {
 
     static void sysOut(String name, String string) {
         System.out.println(name + " O: " + string);
+    }
+
+    static void sysOut(String name, Level level, String string) {
+        if (level != null && level.isClientSide) {
+            System.out.println(name + " C: " + string);
+        } else {
+            System.out.println(name + " S: " + string);
+        }
     }
 
     static ResourceLocation makeRL(String path) {

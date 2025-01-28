@@ -1,7 +1,7 @@
 package com.huanyu_mod.payload;
 
 import com.huanyu_mod.blockentity.dimension_editor_be;
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.procedure.test;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -16,8 +16,8 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 
 public record dimensionEditorPayload(BlockPos blockPos, String _type, String string0, String string1, String string2) implements CustomPacketPayload {
-    public final static String CLASS_NAME = HYEng.getCurrentClassName();
-    public final static Type<dimensionEditorPayload> TYPE = new Type<>(HYEng.makeRL("dimension_editor"));
+    public final static String CLASS_NAME = IHYEng.getCurrentClassName();
+    public final static Type<dimensionEditorPayload> TYPE = new Type<>(IHYEng.makeRL("dimension_editor"));
     public final static StreamCodec<RegistryFriendlyByteBuf, dimensionEditorPayload> STREAM_CODEC = StreamCodec.of(
             (RegistryFriendlyByteBuf buffer, dimensionEditorPayload data) -> {
                 buffer.writeBlockPos(data.blockPos);

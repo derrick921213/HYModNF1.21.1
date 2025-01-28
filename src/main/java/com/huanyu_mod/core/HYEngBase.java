@@ -8,13 +8,12 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.Collections;
 
-public abstract class HYEngBase implements HYEng{
+public abstract class HYEngBase implements IHYEng {
     public static Object getServer;
     static HYEngBase INSTANCE;
     public HYEngBase(IEventBus modEventBus, ModContainer modContainer) {

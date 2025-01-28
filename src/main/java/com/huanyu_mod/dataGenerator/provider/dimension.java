@@ -1,6 +1,6 @@
 package com.huanyu_mod.dataGenerator.provider;
 
-import com.huanyu_mod.core.HYEng;
+import com.huanyu_mod.core.IHYEng;
 import com.huanyu_mod.world.dimension.debug_dim00;
 import com.huanyu_mod.world.dimension.debug_dim01;
 import net.minecraft.core.HolderLookup;
@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class dimension extends DatapackBuiltinEntriesProvider {
     public dimension(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(HYEng.MOD_ID));
+        super(output, registries, BUILDER, Set.of(IHYEng.MOD_ID));
     }
 
     public final static RegistrySetBuilder BUILDER = new RegistrySetBuilder()
