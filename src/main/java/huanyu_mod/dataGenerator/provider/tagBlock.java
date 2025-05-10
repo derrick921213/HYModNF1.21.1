@@ -23,7 +23,6 @@ public class tagBlock extends BlockTagsProvider {
 
         this.tag(BlockTags.create(IHYEng.makeRL("debug_block"))).add(
                 HYBlocks.DEBUG_BLOCK00.get(),
-                HYBlocks.DEBUG_BLOCK01.get(),
                 HYBlocks.DEBUG_BLOCK02.get()
         );
 

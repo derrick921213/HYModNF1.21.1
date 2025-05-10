@@ -33,8 +33,8 @@ public class test {
         System.out.println(CLASS_NAME + " Output: " + dataPackPath.toAbsolutePath());
     }
     public static void executeCmd(CommandContext<CommandSourceStack> context) {
-        MinecraftServer server = context.getSource().getServer();
-        HYDimensions.register(server);
+//        MinecraftServer server = context.getSource().getServer();
+//        HYDimensions.register(server);
 
         /*Registry<DimensionType> dimensionTypeRegistry =
                 server.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE);

@@ -33,7 +33,4 @@ public class HYBlockEntities {
             "debug_block00_be", () -> BlockEntityType.Builder.of(
                     debugBlock00BE::new, HYBlocks.DEBUG_BLOCK00.get()).build(null));
 
-    public final static Supplier<BlockEntityType<?>> DEBUG_BLOCK_01_BE = DR.register(
-            "debug_block01_be", () -> BlockEntityType.Builder.of(
-                    debugBlock01BE::new, HYBlocks.DEBUG_BLOCK01.get()).build(null));
 }

@@ -17,7 +17,8 @@ public class chisel {
     private final static Map<Block, Block> CLICK_BLOCK_MAP = Map.of(
             Blocks.GRASS_BLOCK, Blocks.DIRT,
             Blocks.DIRT, Blocks.GRASS_BLOCK,
-            HYBlocks.DEBUG_BLOCK00.get(), HYBlocks.DEBUG_BLOCK01.get()
+            HYBlocks.DEBUG_BLOCK00.get(), HYBlocks.DEBUG_BLOCK02.get(),
+            HYBlocks.DEBUG_BLOCK02.get(), HYBlocks.DEBUG_BLOCK00.get()
     );
 
     public static InteractionResult execute(UseOnContext context) {

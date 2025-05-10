@@ -19,7 +19,6 @@ public class lootTableBlock extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(HYBlocks.DIMENSION_EDITOR.get());
         dropSelf(HYBlocks.DEBUG_BLOCK00.get());
-        dropSelf(HYBlocks.DEBUG_BLOCK01.get());
         dropSelf(HYBlocks.DEBUG_BLOCK02.get());
 
         /*this.add(ModBlocks.SAPPHIRE_ORE.get(),

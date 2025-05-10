@@ -43,7 +43,6 @@ public class HYTabs {
                         output.accept(HYItems.DEBUG_ITEM01);
                         output.accept(HYItems.DEBUG_ITEM02);
                         output.accept(HYBlocks.DEBUG_BLOCK00);
-                        output.accept(HYBlocks.DEBUG_BLOCK01);
                         output.accept(HYBlocks.DEBUG_BLOCK02);
                     })
                     .build()

@@ -24,7 +24,6 @@ public class tagItem extends ItemTagsProvider {
 
         this.tag(ItemTags.create(IHYEng.makeRL("debug_block")))
                 .add(HYBlocks.DEBUG_BLOCK00.get().asItem())
-                .add(HYBlocks.DEBUG_BLOCK01.get().asItem())
                 .add(HYBlocks.DEBUG_BLOCK02.get().asItem());
 
     }

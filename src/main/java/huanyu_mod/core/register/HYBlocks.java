@@ -38,8 +38,6 @@ public class HYBlocks {
 
     public final static DeferredBlock<?> DEBUG_BLOCK00 = registerBlock(
             "debug_block00", debugBlock00::new, debugBlock00.ITEM_PROPERTIES);
-    public final static DeferredBlock<?> DEBUG_BLOCK01 = registerBlock(
-            "debug_block01", debugBlock01::new, debugBlock01.ITEM_PROPERTIES);
     public final static DeferredBlock<?> DEBUG_BLOCK02 = registerBlock(
             "debug_block02", debugBlock02::new, debugBlock02.ITEM_PROPERTIES);
 }
